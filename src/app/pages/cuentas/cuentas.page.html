@@ -1,0 +1,130 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registrar Cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+
+<ion-item>
+  <ion-label>Fecha de Compra</ion-label>
+  <ion-datetime-button datetime="fechaCompra"></ion-datetime-button>
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime
+        id="fechaCompra"
+        presentation="date"
+        (ionChange)="form.get('fechaCompra')?.setValue($event.detail.value)">
+      </ion-datetime>
+    </ng-template>
+  </ion-modal>
+</ion-item>
+
+<ion-item>
+  <ion-label>Fecha de Expiración</ion-label>
+  <ion-datetime-button datetime="fechaExpiracion"></ion-datetime-button>
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime
+        id="fechaExpiracion"
+        presentation="date"
+        (ionChange)="form.get('fechaExpiracion')?.setValue($event.detail.value)">
+      </ion-datetime>
+    </ng-template>
+  </ion-modal>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">Número de Cuenta</ion-label>
+  <ion-input formControlName="NumCuenta"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-select
+    formControlName="Tamano"
+    label="Tamaño"
+    interface="popover"
+    placeholder="Seleccione un tamaño">
+    <ion-select-option value="25 K">25 K</ion-select-option>
+    <ion-select-option value="50 K">50 K</ion-select-option>
+    <ion-select-option value="100 K">100 K</ion-select-option>
+    <ion-select-option value="150 K">150 K</ion-select-option>
+    <ion-select-option value="200 K">200 K</ion-select-option>
+  </ion-select>
+</ion-item>
+
+<ion-item>
+  <ion-select
+    formControlName="Empresa"
+    label="Empresa"
+    interface="popover"
+    placeholder="Seleccione una empresa">
+    <ion-select-option value="E2T - Earn2Trade">E2T - Earn2Trade</ion-select-option>
+    <ion-select-option value="MFF - MyFundedFuture">MFF - MyFundedFuture</ion-select-option>
+  </ion-select>
+</ion-item>
+
+<ion-item>
+  <ion-select
+    formControlName="Estatus"
+    label="Estatus"
+    interface="popover"
+    placeholder="Seleccione el Estatus">
+    <ion-select-option value="Sim">Sim</ion-select-option>
+    <ion-select-option value="Sim Live">Sim Live</ion-select-option>
+    <ion-select-option value="Aprobada">Aprobada</ion-select-option>
+    <ion-select-option value="Fallida">Fallida</ion-select-option>
+    <ion-select-option value="Cancelada">Cancelada</ion-select-option>
+  </ion-select>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">Profit</ion-label>
+  <ion-input type="number" formControlName="Profit"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">Stop</ion-label>
+  <ion-input type="number" formControlName="Stop"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">% Consistencia</ion-label>
+  <ion-input type="number" formControlName="PorcConsistencia"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">Descripción</ion-label>
+  <ion-input formControlName="Descripcion"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">Email Compra</ion-label>
+  <ion-input formControlName="EmailCompra" type="email"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">Responsable</ion-label>
+  <ion-input formControlName="Responsable"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">Nota</ion-label>
+  <ion-input formControlName="Nota"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">Documento Relacionado</ion-label>
+  <ion-input formControlName="DocumentoRelacionado"></ion-input>
+</ion-item>
+
+<ion-item lines="none">
+  <ion-label>Activa</ion-label>
+  <ion-toggle formControlName="Activa"></ion-toggle>
+</ion-item>
+
+<ion-button expand="block" type="submit" class="ion-margin-top">Guardar</ion-button>
+  </form>
+</ion-content>
