@@ -12,6 +12,8 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { environment } from './environments/environment';
 
+import { addIcons } from 'ionicons';
+import { addOutline, createOutline, trashOutline } from 'ionicons/icons';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -19,11 +21,17 @@ bootstrapApplication(AppComponent, {
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideAnimations(),
-
+     
     // Firebase Providers
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
-    provideAuth(() => getAuth()),
+    provideAuth(() => getAuth())   
     
   ],
+});
+
+addIcons({
+  'add-outline': addOutline,
+  'create-outline': createOutline,
+  'trash-outline':  trashOutline
 });

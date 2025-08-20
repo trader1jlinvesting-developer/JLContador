@@ -1,0 +1,40 @@
+<!-- src/app/pages/movimientos/movimientos-list.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Movimientos</ion-title>
+   
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="movimientos$ | async as movimientos">
+    <ion-item *ngFor="let m of movimientos">
+      <ion-label>
+        <h3>{{ m.Concepto || m.Tipo }}</h3>
+        <p>{{ m.FechaMovimiento | date:'short' }} — {{ m.Responsable }}</p>
+        <p><strong>{{ m.Total || m.Valor | number:'1.2-2' }}</strong></p>
+      </ion-label>
+
+      <ion-button fill="clear" slot="end" (click)="editar(m.id)">
+        <ion-icon name="create-outline" size="large" ></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" slot="end" color="danger" (click)="eliminar(m.id)">
+        <ion-icon name="trash-outline" size="large"  ></ion-icon>
+      </ion-button>
+
+    </ion-item>
+  </ion-list>
+
+<!-- Botón flotante -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" (click)="irCrear()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+</ion-content>
+
