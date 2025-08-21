@@ -23,6 +23,23 @@ export class MovimientosFormPage implements OnInit {
   
   editarId: string | null = null; 
 
+  // Catálogos locales para mapear id -> texto
+tipos = [
+  { id: 1, label: 'Ingreso' },
+  { id: 2, label: 'Gasto' },
+  { id: 3, label: 'CXC' },
+];
+
+conceptos = [
+  { id: 1, label: 'Cuenta 50K' },
+  { id: 2, label: 'Pago Emp Fdeo' },
+];
+
+monedas = [
+  { value: 'USD', label: 'USD' },
+  { value: 'COP', label: 'COP' },
+];
+
 
   constructor(
     private fb: FormBuilder,
@@ -71,24 +88,62 @@ export class MovimientosFormPage implements OnInit {
   }
 
   async guardar() {
-    if (this.form.invalid) {
-      const a = await this.alertCtrl.create({ header: 'Atención', message: 'Complete los campos requeridos', buttons: ['OK'] });
-      await a.present();
-      return;
-    }
-
-   const data = this.form.value as Partial<Movimiento>; 
-
-    try {
-      if (this.editarId) {
-        await this.svc.actualizarMovimiento(this.editarId, data);
-      } else {
-        await this.svc.agregarMovimiento(data);
+      if (this.form.invalid) {
+        console.log('formulario NO valido', this.form.value);
+        const a = await this.alertCtrl.create({ header: 'Atención', message: 'Complete los campos requeridos', buttons: ['OK'] });
+        await a.present();
+        return;
       }
-      this.nav.back();
-    } catch (err) {
-      const a = await this.alertCtrl.create({ header: 'Error', message: 'No se pudo guardar', buttons: ['OK'] });
-      await a.present();
-    }
+
+      console.log('formulario valido', this.form.value);
+
+      const data = this.form.value as Partial<Movimiento>; 
+
+      console.log('data: ', data);
+
+      //Se convierte el tipo de fecha a date para que no tenga problemas con firebase
+      if(data.FechaMovimiento){
+        data.FechaMovimiento = new Date(data.FechaMovimiento);
+      }
+
+      try {
+        if (this.editarId) {
+          await this.svc.actualizarMovimiento(this.editarId, data);
+        } else {
+          await this.svc.agregarMovimiento(data);
+        }
+        this.nav.back();
+      } catch (err) {
+        
+        console.log('Error: ', err);
+
+        const a = await this.alertCtrl.create({ header: 'Error', message: 'No se pudo guardar', buttons: ['OK'] });
+        await a.present();
+      }
   }
+
+
+// Cuando cambia el tipo, mapea el id al texto y lo guarda en "Tipo"
+onTipoChange(ev: any) {
+  const id = Number(ev?.detail?.value);
+  const found = this.tipos.find(t => t.id === id);
+  this.form.patchValue({ Tipo: found?.label ?? '' });
+}
+
+// Cuando cambia el concepto, mapea el id al texto y lo guarda en "Concepto"
+onConceptoChange(ev: any) {
+  const id = Number(ev?.detail?.value);
+  const found = this.conceptos.find(c => c.id === id);
+  this.form.patchValue({ Concepto: found?.label ?? '' });
+}
+
+onMonedaChange(event: any) {
+  const text = event.detail.value; // Aquí ya es "USD" o "COP"
+  const label = event.target.textContent.trim(); 
+  this.form.patchValue({ Moneda: text });
+}
+
+
+
+
 }

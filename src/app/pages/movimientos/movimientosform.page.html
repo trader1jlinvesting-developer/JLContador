@@ -25,50 +25,55 @@
         </ion-modal>
     </ion-item>
 
-   <ion-item>      
-      <ion-select 
-      formControlName="IdTipo"
-      label="Tipo Movimiento"
-      interface="popover"
-      placeholder="Seleccione"
-      >
-        <!-- Cargar desde tabla TipoMovimientos -->
-        <ion-select-option [value]="1">Ingreso</ion-select-option>
-        <ion-select-option [value]="2">Gasto</ion-select-option>
-        <ion-select-option [value]="3">Cuenta X Cobrar</ion-select-option>
-      </ion-select>
-    </ion-item>
+ <!-- Tipo Movimiento -->
+<ion-item>
+  <ion-select
+    formControlName="IdTipo"
+    label="Tipo Movimiento"
+    interface="popover"
+    placeholder="Seleccione"
+    (ionChange)="onTipoChange($event)"
+  >
+    <ion-select-option *ngFor="let t of tipos" [value]="t.id">
+      {{ t.label }}
+    </ion-select-option>
+  </ion-select>
+</ion-item>
 
-    <ion-item>      
-      <ion-select 
-      formControlName="IdConcepto"
-      label="Concepto"
-      interface="popover"
-      placeholder="Seleccione"
-      >
-        <!-- Cargar desde ConceptoMovimientos -->
-        <ion-select-option [value]="1">Cuenta 50K</ion-select-option>
-        <ion-select-option [value]="2">Pago Emp Fdeo</ion-select-option>
-      </ion-select>
-    </ion-item>
+ <!-- Concepto -->
+<ion-item>
+  <ion-select
+    formControlName="IdConcepto"
+    label="Concepto"
+    interface="popover"
+    placeholder="Seleccione"
+    (ionChange)="onConceptoChange($event)"
+  >
+    <ion-select-option *ngFor="let c of conceptos" [value]="c.id">
+      {{ c.label }}
+    </ion-select-option>
+  </ion-select>
+</ion-item>
+
 
     <ion-item>
       <ion-label position="stacked">Valor</ion-label>
       <ion-input type="number" formControlName="Valor"></ion-input>
     </ion-item>
 
-    <ion-item>      
-      <ion-select 
-      formControlName="Moneda"
-      label="Moneda"
-      interface="popover"
-      placeholder="Seleccione"
-      >
-        <!-- Cargar desde ConceptoMovimientos -->
-        <ion-select-option [value]="1">USD</ion-select-option>
-        <ion-select-option [value]="2">COP</ion-select-option>
-      </ion-select>
-    </ion-item>
+ <!-- Moneda (guarda directamente el texto en el form) -->
+<ion-item>
+  <ion-select
+    formControlName="Moneda"
+    label="Moneda"
+    interface="popover"
+    placeholder="Seleccione"
+  >
+    <ion-select-option *ngFor="let m of monedas" [value]="m.value">
+      {{ m.label }}
+    </ion-select-option>
+  </ion-select>
+</ion-item>
 
     <ion-item>
       <ion-label position="stacked">Cantidad</ion-label>
@@ -96,7 +101,7 @@
     </ion-item>
 
 
-    <ion-button expand="block" type="submit" class="ion-margin-top">Guardar</ion-button>
+    <ion-button expand="block" type="submit" color="success" class="ion-margin-top">Guardar</ion-button>
   </form>
 </ion-content>
 

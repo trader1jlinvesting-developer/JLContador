@@ -6,9 +6,15 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    
-     <ion-list [inset]="true">
-    <ion-item [button]="true"  routerLink="['/movimientos']"  >
+ 
+    <ion-list [inset]="true">
+
+    <ion-item [button]="true" routerLink="/home"   >
+      <ion-icon  slot="start" ></ion-icon>
+      <ion-label>Inicio</ion-label>      
+    </ion-item>
+     
+    <ion-item [button]="true"   >
       <ion-icon color="danger" slot="start" name="list-circle" size="large"></ion-icon>
       <ion-label>Cuentas</ion-label>
       <ion-note slot="end">1</ion-note>
@@ -36,7 +42,11 @@
       <ion-label>Cuentas Por Empresa</ion-label>
       <ion-note slot="end">4.1</ion-note>
     </ion-item>
-
+    <br>
+    <ion-item [button]="true" routerLink="/login"   >
+      <ion-icon  slot="start" ></ion-icon>
+      <ion-label>Salir</ion-label>      
+    </ion-item>
 
   </ion-list>
 

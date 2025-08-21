@@ -1,23 +1,25 @@
 // src/app/models/movimiento.model.ts
 export interface Movimiento {
-  id?: string;            // id Firestore
-  Consecutivo?: number;
-  FechaMovimiento?: string; // ISO string
-  Numero?: string;
-  IdTipo?: number;
-  Tipo?: string;
-  IdConcepto?: number;
-  Concepto?: string;
-  Valor?: number;
-  Moneda?: string;
-  Cantidad?: number;
-  Total?: number;
-  Responsable?: string;
-  DocumentoRelacionado?: string;
-  Borrado?: boolean;
-  Nota?:string;
-  // opcionales: relacion con cuenta si lo agregas
-  IdCuenta?: string;
+  id?: string;                  // id Firestore (autogenerado)
+  Consecutivo?: number;         // Número consecutivo interno
+  FechaMovimiento?: string | Date;    // Fecha en formato ISO (ej: '2025-08-18T12:34:56Z')
+  Numero?: string;              // Número de documento / referencia
+  IdTipo?: number;              // Identificador numérico de tipo
+  Tipo?: 'Ingreso' | 'Gasto' | string;  // Tipo de movimiento (controlado o libre)
+  IdConcepto?: number;          // Identificador de concepto
+  Concepto?: string;            // Nombre del concepto
+  Valor?: number;               // Valor unitario
+  Moneda?: string;              // Código de moneda (ej: 'USD', 'COP')
+  Cantidad?: number;            // Cantidad (ej: unidades)
+  Total?: number;               // Total = Cantidad * Valor
+  Responsable?: string;         // Persona responsable
+  DocumentoRelacionado?: string;// Id o referencia de otro documento relacionado
+  Borrado?: boolean;            // Marcador lógico de borrado
+  Nota?: string;                // Nota adicional
+  IdCuenta?: string;            // Relación con cuenta
 
+  // Nuevos opcionales útiles para trazabilidad
+  CreadoEn?: string;            // Fecha de creación (ISO)
+  ActualizadoEn?: string;       // Fecha de última actualización (ISO)
 }
 

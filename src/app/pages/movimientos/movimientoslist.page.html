@@ -13,9 +13,9 @@
   <ion-list *ngIf="movimientos$ | async as movimientos">
     <ion-item *ngFor="let m of movimientos">
       <ion-label>
-        <h3>{{ m.Concepto || m.Tipo }}</h3>
-        <p>{{ m.FechaMovimiento | date:'short' }} — {{ m.Responsable }}</p>
-        <p><strong>{{ m.Total || m.Valor | number:'1.2-2' }}</strong></p>
+        <h3>{{ m.Numero }} - {{ m.FechaMovimiento }} </h3>     
+        <p> {{ m.Concepto }}</p>
+        <p><strong> {{ m.Tipo }} : {{ m.Total || m.Valor | number:'1.2-2' }} - {{ m.Moneda }} </strong></p>
       </ion-label>
 
       <ion-button fill="clear" slot="end" (click)="editar(m.id)">
