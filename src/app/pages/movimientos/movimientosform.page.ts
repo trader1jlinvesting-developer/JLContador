@@ -124,20 +124,39 @@ monedas = [
 
 
 // Cuando cambia el tipo, mapea el id al texto y lo guarda en "Tipo"
-onTipoChange(ev: any) {
-  const id = Number(ev?.detail?.value);
-  const found = this.tipos.find(t => t.id === id);
-  this.form.patchValue({ Tipo: found?.label ?? '' });
+// onTipoChange(ev: any) {
+//   console.log('Entro a OnTipeChange');
+//   const id = Number(ev?.detail?.value);
+//   const found = this.tipos.find(t => t.id === id);
+//   this.form.patchValue({ Tipo: found?.label ?? '' });
+// }
+
+onTipoChange(event: any) {
+  const id = event.detail.value;
+  const tipoSeleccionado = this.tipos.find(t => t.id === id);
+
+  console.log("El nombre del tipo 1:", tipoSeleccionado);
+  this.form.patchValue({ Tipo: tipoSeleccionado?.label });
+
+  // if (tipoSeleccionado) {
+  //   this.form.patchValue({
+  //     Tipo: tipoSeleccionado.label
+  //   });
+  //   console.log("El nombre del tipo 2:", tipoSeleccionado.label);
+  // }
 }
+
 
 // Cuando cambia el concepto, mapea el id al texto y lo guarda en "Concepto"
 onConceptoChange(ev: any) {
+  console.log('Entro a onConceptoChange');
   const id = Number(ev?.detail?.value);
   const found = this.conceptos.find(c => c.id === id);
   this.form.patchValue({ Concepto: found?.label ?? '' });
 }
 
 onMonedaChange(event: any) {
+  console.log('Entro a onMonedaChange');
   const text = event.detail.value; // Aquí ya es "USD" o "COP"
   const label = event.target.textContent.trim(); 
   this.form.patchValue({ Moneda: text });

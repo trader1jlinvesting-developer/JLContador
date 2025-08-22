@@ -32,11 +32,10 @@
     label="Tipo Movimiento"
     interface="popover"
     placeholder="Seleccione"
-    (ionChange)="onTipoChange($event)"
-  >
-    <ion-select-option *ngFor="let t of tipos" [value]="t.id">
-      {{ t.label }}
-    </ion-select-option>
+    (ionChange)="onTipoChange($event)" >
+    <ion-select-option *ngFor="let tipo of tipos" [value]="tipo.id">
+    {{ tipo.label }}
+  </ion-select-option>
   </ion-select>
 </ion-item>
 

@@ -135,18 +135,13 @@ export class MovimientosService {
   async agregarMovimiento(m: Movimiento) {
 
     console.log('Movimiento Servicio 1 : ',  m.Tipo, m);
-
-    if(m.Tipo = "")
-    {
-      console.log('Movimiento Servicio 2, si entro : ',  m.Tipo, m);
-      m.Tipo = "MOV";
-    }      
-    else
-    {
-       console.log('Movimiento Servicio 2, si entro : ',  m.Tipo, m);
-        m.Tipo = m.Tipo;
+  
+    if (!m.Tipo) {
+      console.error('El movimiento no tiene Tipo definido');
+    return;
     }
       
+    console.log('Movimiento Servicio 4 : ',  m.Tipo, m);
 
     const numero = await this.generarNumero(m.Tipo);
 

@@ -5,7 +5,7 @@ export interface Movimiento {
   FechaMovimiento?: string | Date;    // Fecha en formato ISO (ej: '2025-08-18T12:34:56Z')
   Numero?: string;              // Número de documento / referencia
   IdTipo?: number;              // Identificador numérico de tipo
-  Tipo?: 'Ingreso' | 'Gasto' | string;  // Tipo de movimiento (controlado o libre)
+  Tipo?: string;  // Tipo de movimiento (controlado o libre)
   IdConcepto?: number;          // Identificador de concepto
   Concepto?: string;            // Nombre del concepto
   Valor?: number;               // Valor unitario
