@@ -54,12 +54,6 @@
   </ion-select>
 </ion-item>
 
-
-    <ion-item>
-      <ion-label position="stacked">Valor</ion-label>
-      <ion-input type="number" formControlName="Valor"></ion-input>
-    </ion-item>
-
  <!-- Moneda (guarda directamente el texto en el form) -->
 <ion-item>
   <ion-select
@@ -72,17 +66,34 @@
       {{ m.label }}
     </ion-select-option>
   </ion-select>
-</ion-item>
+  </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Cantidad</ion-label>
-      <ion-input type="number" formControlName="Cantidad"></ion-input>
-    </ion-item>
+    <!-- Valor, Cantidad y Total en la misma fila -->
+<ion-grid>
+  <ion-row>
+    <ion-col size="4">
+      <ion-item>
+        <ion-label position="stacked">Valor</ion-label>
+        <ion-input type="number" formControlName="Valor"></ion-input>
+      </ion-item>
+    </ion-col>
 
-    <ion-item>
-      <ion-label position="stacked">Total</ion-label>
-      <ion-input type="number" formControlName="Total" readonly></ion-input>
-    </ion-item>
+    <ion-col size="3">
+      <ion-item>
+        <ion-label position="stacked">Cant</ion-label>
+        <ion-input type="number" formControlName="Cantidad"></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col size="5">
+      <ion-item>
+        <ion-label position="stacked"   >Total</ion-label>
+        <ion-input type="number" formControlName="Total"  readonly="true" ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
 
      <!-- Moneda (guarda directamente el texto en el form) -->
     <ion-item>
@@ -98,15 +109,34 @@
       </ion-select>
     </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Número de cuenta</ion-label>
+    <!-- <ion-item>
+      <ion-label position="stacked">Num cuenta</ion-label>
       <ion-input formControlName="NumeroCuenta"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Documento Relacionado</ion-label>
+      <ion-label position="stacked">Doc Relacionado</ion-label>
       <ion-input formControlName="DocumentoRelacionado"></ion-input>
-    </ion-item>
+    </ion-item> -->
+
+    <!-- NumeroCuenta y DocumentoRelacionado en la misma fila -->
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="stacked">Num cuenta</ion-label>
+            <ion-input formControlName="NumeroCuenta"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="stacked">Documento Rdo</ion-label>
+            <ion-input formControlName="DocumentoRelacionado"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
      <ion-item>
       <ion-label position="stacked">Responsable</ion-label>
@@ -118,9 +148,11 @@
       <ion-input formControlName="Nota"></ion-input>
     </ion-item>
 
-
-
+     <br>
+    
     <ion-button expand="block" type="submit" color="success" class="ion-margin-top">Guardar</ion-button>
+
+    
   </form>
 </ion-content>
 

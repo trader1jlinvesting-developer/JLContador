@@ -95,24 +95,31 @@ empresas = [
 
   }
 
-
   ngOnInit() {
-    this.editarId = this.route.snapshot.paramMap.get('id');
-    if (this.editarId) {
-      // cargar movimiento para editar (implementar si quieres)
-      // this.svc.obtenerPorId(this.editarId).subscribe(...)
-    }
-
-    // recalcular total al cambiar valor o cantidad
-    this.form.get('Valor')?.valueChanges.subscribe(() => this.recalcularTotal());
-    this.form.get('Cantidad')?.valueChanges.subscribe(() => this.recalcularTotal());
+  this.editarId = this.route.snapshot.paramMap.get('id');
+  if (this.editarId) {
+    // cargar movimiento para editar (implementar si quieres)
+    // this.svc.obtenerPorId(this.editarId).subscribe(...)
   }
 
-  recalcularTotal() {
-    const v = Number(this.form.value.Valor || 0);
-    const c = Number(this.form.value.Cantidad || 1);
-    this.form.patchValue({ Total: v * c }, { emitEvent: false });
-  }
+  // recalcular total al cambiar valor o cantidad
+  this.form.get('Valor')?.valueChanges.subscribe(() => this.recalcularTotal());
+  this.form.get('Cantidad')?.valueChanges.subscribe(() => this.recalcularTotal());
+}
+
+recalcularTotal() {
+  // usamos setTimeout para esperar a que Angular/Ionic actualice el valor
+  setTimeout(() => {
+    const v = Number(this.form.get('Valor')?.value || 0);
+    const c = Number(this.form.get('Cantidad')?.value || 1);
+    const t = v * c;
+
+    console.log('Valor:', v, 'Cantidad:', c, 'Total:', t);
+
+    this.form.patchValue({ Total: t }, { emitEvent: false });
+  }, 0);
+}
+  
 
   async guardar() {
       if (this.form.invalid) {
