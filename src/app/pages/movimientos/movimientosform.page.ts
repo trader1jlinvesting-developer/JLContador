@@ -12,6 +12,7 @@ import { Movimiento } from 'src/app/models/movimiento.model';
 @Component({
   selector: 'app-movimientos-form',
   standalone: true,
+  styleUrls: ['movimientosform.page.scss'],
   imports: [CommonModule, IonicModule, ReactiveFormsModule, RouterModule],
   templateUrl: './movimientosform.page.html'
 })
@@ -28,16 +29,34 @@ tipos = [
   { id: 1, label: 'Ingreso' },
   { id: 2, label: 'Gasto' },
   { id: 3, label: 'CXC' },
+  { id: 4, label: 'CXP' },
+  { id: 5, label: 'Ajuste' },
+  { id: 6, label: 'Anulación' },
+
 ];
 
 conceptos = [
-  { id: 1, label: 'Cuenta 50K' },
-  { id: 2, label: 'Pago Emp Fdeo' },
+  { id: 1, label: 'NA' },
+  { id: 2, label: 'Cuenta 50K' },
+  { id: 10, label: 'Cuenta 100K' },
+  { id: 4, label: 'Reset' }, 
+  { id: 6, label: 'Empresa Fondeo' },  
+  { id: 8, label: 'Aporte Socio' },
+  { id: 9, label: 'Prestamo' },  
+  { id: 12, label: 'Por sobrante' },
+  { id: 13, label: 'Por faltante' },
+
 ];
 
 monedas = [
   { value: 'USD', label: 'USD' },
   { value: 'COP', label: 'COP' },
+];
+
+empresas = [
+  { value: 'NA', label: 'NA' },
+  { value: 'E2T', label: 'E2T' },
+  { value: 'MFF', label: 'MFF' },
 ];
 
 
@@ -63,7 +82,8 @@ monedas = [
       Responsable: [''],
       DocumentoRelacionado: [''],
       Nota: [''],
-      IdCuenta: ['']
+      NumeroCuenta: [''],
+      Empresa: ['']
     });
 
   }
@@ -97,9 +117,7 @@ monedas = [
 
       console.log('formulario valido', this.form.value);
 
-      const data = this.form.value as Partial<Movimiento>; 
-
-      console.log('data: ', data);
+      const data = this.form.value as Partial<Movimiento>;      
 
       //Se convierte el tipo de fecha a date para que no tenga problemas con firebase
       if(data.FechaMovimiento){
@@ -109,8 +127,16 @@ monedas = [
       try {
         if (this.editarId) {
           await this.svc.actualizarMovimiento(this.editarId, data);
+
+          const msa = await this.alertCtrl.create({ header: 'Actualizado', message: 'Se actualizo correctamente el movimiento', buttons: ['OK'] });
+          await msa.present();
+
         } else {
           await this.svc.agregarMovimiento(data);
+
+          const msa = await this.alertCtrl.create({ header: 'Guardado', message: 'Se guardo correctamente el movimiento', buttons: ['OK'] });
+          await msa.present();
+
         }
         this.nav.back();
       } catch (err) {
@@ -123,46 +149,26 @@ monedas = [
   }
 
 
-// Cuando cambia el tipo, mapea el id al texto y lo guarda en "Tipo"
-// onTipoChange(ev: any) {
-//   console.log('Entro a OnTipeChange');
-//   const id = Number(ev?.detail?.value);
-//   const found = this.tipos.find(t => t.id === id);
-//   this.form.patchValue({ Tipo: found?.label ?? '' });
-// }
-
 onTipoChange(event: any) {
   const id = event.detail.value;
   const tipoSeleccionado = this.tipos.find(t => t.id === id);
-
   console.log("El nombre del tipo 1:", tipoSeleccionado);
-  this.form.patchValue({ Tipo: tipoSeleccionado?.label });
-
-  // if (tipoSeleccionado) {
-  //   this.form.patchValue({
-  //     Tipo: tipoSeleccionado.label
-  //   });
-  //   console.log("El nombre del tipo 2:", tipoSeleccionado.label);
-  // }
+  this.form.patchValue({ Tipo: tipoSeleccionado?.label }); 
 }
 
 
 // Cuando cambia el concepto, mapea el id al texto y lo guarda en "Concepto"
-onConceptoChange(ev: any) {
-  console.log('Entro a onConceptoChange');
+onConceptoChange(ev: any) {  
   const id = Number(ev?.detail?.value);
   const found = this.conceptos.find(c => c.id === id);
   this.form.patchValue({ Concepto: found?.label ?? '' });
 }
 
-onMonedaChange(event: any) {
-  console.log('Entro a onMonedaChange');
+onMonedaChange(event: any) {  
   const text = event.detail.value; // Aquí ya es "USD" o "COP"
   const label = event.target.textContent.trim(); 
   this.form.patchValue({ Moneda: text });
 }
-
-
 
 
 }

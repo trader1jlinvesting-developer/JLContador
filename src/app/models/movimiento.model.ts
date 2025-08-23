@@ -16,8 +16,8 @@ export interface Movimiento {
   DocumentoRelacionado?: string;// Id o referencia de otro documento relacionado
   Borrado?: boolean;            // Marcador lógico de borrado
   Nota?: string;                // Nota adicional
-  IdCuenta?: string;            // Relación con cuenta
-
+  NumeroCuenta?: string;        // Relación con cuenta
+  Empresa?: string;             // Empresa o proveedor
   // Nuevos opcionales útiles para trazabilidad
   CreadoEn?: string;            // Fecha de creación (ISO)
   ActualizadoEn?: string;       // Fecha de última actualización (ISO)

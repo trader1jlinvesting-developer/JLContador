@@ -31,6 +31,9 @@ export class MovimientosService {
       case 'Ingreso': return 'ING';
       case 'Gasto': return 'GTO';
       case 'CXC': return 'CXC';
+      case 'CXP': return 'CXP';
+      case 'Ajuste': return 'AJT';
+      case 'Anulación': return 'ANU';
       default: return 'MOV'; // fallback
     }
   }
@@ -133,16 +136,12 @@ export class MovimientosService {
 
   // 🔹 Ahora agrega Número único con prefijo + consecutivo
   async agregarMovimiento(m: Movimiento) {
-
-    console.log('Movimiento Servicio 1 : ',  m.Tipo, m);
-  
+      
     if (!m.Tipo) {
       console.error('El movimiento no tiene Tipo definido');
     return;
     }
-      
-    console.log('Movimiento Servicio 4 : ',  m.Tipo, m);
-
+    
     const numero = await this.generarNumero(m.Tipo);
 
     const mov: WithFieldValue<DocumentData> = {

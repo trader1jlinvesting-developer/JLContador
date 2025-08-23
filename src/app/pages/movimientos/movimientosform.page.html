@@ -84,9 +84,23 @@
       <ion-input type="number" formControlName="Total" readonly></ion-input>
     </ion-item>
 
+     <!-- Moneda (guarda directamente el texto en el form) -->
     <ion-item>
-      <ion-label position="stacked">Responsable</ion-label>
-      <ion-input formControlName="Responsable"></ion-input>
+      <ion-select
+        formControlName="Empresa"
+        label="Empresa"
+        interface="popover"
+        placeholder="Seleccione"
+      >
+        <ion-select-option *ngFor="let em of empresas" [value]="em.value">
+          {{ em.label }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Número de cuenta</ion-label>
+      <ion-input formControlName="NumeroCuenta"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -94,10 +108,16 @@
       <ion-input formControlName="DocumentoRelacionado"></ion-input>
     </ion-item>
 
+     <ion-item>
+      <ion-label position="stacked">Responsable</ion-label>
+      <ion-input formControlName="Responsable"></ion-input>
+    </ion-item>
+
     <ion-item>
       <ion-label position="stacked">Nota</ion-label>
       <ion-input formControlName="Nota"></ion-input>
     </ion-item>
+
 
 
     <ion-button expand="block" type="submit" color="success" class="ion-margin-top">Guardar</ion-button>

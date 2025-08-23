@@ -14,7 +14,7 @@
     <ion-item *ngFor="let m of movimientos">
       <ion-label>
         <h3>{{ m.Numero }} - {{ m.FechaMovimiento }} </h3>     
-        <p> {{ m.Concepto }}</p>
+        <p> {{ m.Concepto }} - {{ m.Empresa }} </p>
         <p><strong> {{ m.Tipo }} : {{ m.Total || m.Valor | number:'1.2-2' }} - {{ m.Moneda }} </strong></p>
       </ion-label>
 
