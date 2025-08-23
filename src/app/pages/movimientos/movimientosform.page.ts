@@ -38,13 +38,16 @@ tipos = [
 conceptos = [
   { id: 1, label: 'NA' },
   { id: 2, label: 'Cuenta 50K' },
-  { id: 10, label: 'Cuenta 100K' },
+  { id: 3, label: 'Cuenta 100K' },
   { id: 4, label: 'Reset' }, 
-  { id: 6, label: 'Empresa Fondeo' },  
-  { id: 8, label: 'Aporte Socio' },
+  { id: 5, label: 'Retiro' },  
+  { id: 6, label: 'Aporte Socio' },
+  { id: 7, label: 'Fee Activación 50K' },
+  { id: 8, label: 'Fee Activación 100K' },
   { id: 9, label: 'Prestamo' },  
-  { id: 12, label: 'Por sobrante' },
-  { id: 13, label: 'Por faltante' },
+  { id: 10, label: 'Por sobrante' },
+  { id: 11, label: 'Por faltante' },
+  { id: 12, label: 'Cuenta Live' }
 
 ];
 
@@ -57,6 +60,10 @@ empresas = [
   { value: 'NA', label: 'NA' },
   { value: 'E2T', label: 'E2T' },
   { value: 'MFF', label: 'MFF' },
+  { value: 'ELT', label: 'Elite Trader' },
+  { value: 'BUL', label: 'Bulenox' },
+  { value: 'APX', label: 'Apex' }
+
 ];
 
 
