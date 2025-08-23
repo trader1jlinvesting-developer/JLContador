@@ -47,7 +47,9 @@ conceptos = [
   { id: 9, label: 'Prestamo' },  
   { id: 10, label: 'Por sobrante' },
   { id: 11, label: 'Por faltante' },
-  { id: 12, label: 'Cuenta Live' }
+  { id: 12, label: 'Cuenta Live' },
+  { id: 13, label: 'Pago' },
+  { id: 14, label: 'Comisión' }
 
 ];
 
