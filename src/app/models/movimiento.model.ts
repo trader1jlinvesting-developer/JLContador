@@ -21,5 +21,9 @@ export interface Movimiento {
   // Nuevos opcionales útiles para trazabilidad
   CreadoEn?: string;            // Fecha de creación (ISO)
   ActualizadoEn?: string;       // Fecha de última actualización (ISO)
+  FechaRegistro?: string | Date;
+  IdCliente?: string; //Codigo unico de cada uno de nuestros clientes para que la App se pueda comercializar mas adelante
+                      // Sin necesidad de más desarrollo.
+
 }
 

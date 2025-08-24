@@ -4,16 +4,16 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/movimientos"></ion-back-button>
     </ion-buttons>
-    <ion-title>Crear / Editar Movimiento</ion-title>
+    <ion-title>Registrar Movimiento</ion-title>
   </ion-toolbar>
 </ion-header>
 
     <ion-content [fullscreen]="true" class="ion-padding">
     <form [formGroup]="form" (ngSubmit)="guardar()">
     
-    <ion-item>
-    <ion-label>Fecha Movimiento</ion-label>
-    <ion-datetime-button datetime="FechaMovimiento"></ion-datetime-button>
+    <ion-item  >
+    <ion-label>Fecha: </ion-label>
+    <ion-datetime-button datetime="FechaMovimiento"  ></ion-datetime-button>
         <ion-modal [keepContentsMounted]="true">
             <ng-template>
             <ion-datetime
@@ -109,43 +109,33 @@
       </ion-select>
     </ion-item>
 
-    <!-- <ion-item>
-      <ion-label position="stacked">Num cuenta</ion-label>
-      <ion-input formControlName="NumeroCuenta"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Doc Relacionado</ion-label>
-      <ion-input formControlName="DocumentoRelacionado"></ion-input>
-    </ion-item> -->
-
     <!-- NumeroCuenta y DocumentoRelacionado en la misma fila -->
     <ion-grid>
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="stacked">Num cuenta</ion-label>
-            <ion-input formControlName="NumeroCuenta"></ion-input>
+            <!-- <ion-label position="stacked">Num cuenta</ion-label> -->
+            <ion-input formControlName="NumeroCuenta" placeholder="Num Cuenta" ></ion-input>
           </ion-item>
         </ion-col>
 
         <ion-col size="6">
           <ion-item>
-            <ion-label position="stacked">Documento Rdo</ion-label>
-            <ion-input formControlName="DocumentoRelacionado"></ion-input>
+            <!-- <ion-label position="stacked">Documento Rdo</ion-label> -->
+            <ion-input formControlName="DocumentoRelacionado" placeholder="Documento Rdo" ></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
     </ion-grid>
 
      <ion-item>
-      <ion-label position="stacked">Responsable</ion-label>
-      <ion-input formControlName="Responsable"></ion-input>
+      <!-- <ion-label position="stacked">Responsable</ion-label> -->
+      <ion-input formControlName="Responsable" placeholder="Responsable ( Email )" ></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Nota</ion-label>
-      <ion-input formControlName="Nota"></ion-input>
+      <!-- <ion-label position="stacked">Nota</ion-label> -->
+      <ion-input formControlName="Nota" placeholder="Nota" ></ion-input>
     </ion-item>
 
      <br>

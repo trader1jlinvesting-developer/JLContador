@@ -14,7 +14,7 @@ import { MenuPrincipalComponent } from "./menu-principal/menu-principal.componen
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  imports: [IonNote, IonLabel, IonIcon, IonRouterOutlet, IonItem, IonList, IonApp, IonButtons, IonContent, IonHeader, IonMenu, IonMenuButton, IonTitle, IonToolbar, MenuPrincipalComponent],
+  imports: [ IonRouterOutlet,  IonApp, MenuPrincipalComponent],
  
 })
 export class AppComponent {

@@ -92,12 +92,25 @@ empresas = [
       DocumentoRelacionado: [''],
       Nota: [''],
       NumeroCuenta: [''],
-      Empresa: ['']
+      Empresa: [''],
+      FechaRegistro: [null ],
+      IdCliente:  ['1'],
     });
 
   }
 
   ngOnInit() {
+
+  // Si el formControl de fecha está vacío → asigna la fecha actual
+  const fechaHoy = new Date().toISOString().substring(0, 10); // yyyy-MM-dd
+  if (!this.form.get('FechaMovimiento')?.value) {
+    this.form.patchValue({ FechaMovimiento: fechaHoy });
+  }
+
+  if (!this.form.get('FechaRegistro')?.value) {
+    this.form.patchValue({ FechaRegistro: fechaHoy });
+  }
+
   this.editarId = this.route.snapshot.paramMap.get('id');
   if (this.editarId) {
     // cargar movimiento para editar (implementar si quieres)
