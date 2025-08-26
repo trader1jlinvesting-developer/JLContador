@@ -49,7 +49,8 @@ conceptos = [
   { id: 11, label: 'Por faltante' },
   { id: 12, label: 'Cuenta Live' },
   { id: 13, label: 'Pago' },
-  { id: 14, label: 'Comisión' }
+  { id: 14, label: 'Comisión' },
+  { id: 15, label: 'Agente IA' }
 
 ];
 
@@ -64,7 +65,8 @@ empresas = [
   { value: 'MFF', label: 'MFF' },
   { value: 'ELT', label: 'Elite Trader' },
   { value: 'BUL', label: 'Bulenox' },
-  { value: 'APX', label: 'Apex' }
+  { value: 'APX', label: 'Apex' },
+  { value: 'WBI', label: 'Walbi' }
 
 ];
 
