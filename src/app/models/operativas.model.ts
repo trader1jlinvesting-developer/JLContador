@@ -1,0 +1,19 @@
+export interface Operativa {
+  idOperativa: number;        // int
+  numOperativa: number;       // int
+  fecha: Date;                // Date
+  numCuenta: string;          // string
+  idTrader: string;           // string
+  nombreTrader: string;       // string
+  tipoOperativa: string;      // string
+  ciclo: string;              // string
+  fase: string;               // string
+  activo: string;             // string
+  mercado: string;            // string
+  estrategia: string;         // string
+  riesgo: string;             // string
+  resultado: string;          // string
+  balanceActual: number;      // numeric
+  estatus: string;            // string
+  comentario: string;         // string
+}
