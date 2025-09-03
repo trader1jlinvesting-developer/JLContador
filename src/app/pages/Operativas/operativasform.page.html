@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Nueva Operativa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="operativaForm" (ngSubmit)="guardarOperativa()">
+    <ion-list lines="full">
+
+      <!-- Fecha -->
+      <ion-item>
+        <ion-label position="stacked">Fecha</ion-label>
+        <ion-datetime
+          formControlName="Fecha"
+          display-format="YYYY-MM-DD"
+          placeholder="Selecciona fecha">
+        </ion-datetime>
+      </ion-item>
+
+      <!-- Ciclo -->
+      <ion-item>
+        <ion-label position="stacked">Ciclo</ion-label>
+        <ion-input formControlName="Ciclo"></ion-input>
+      </ion-item>
+
+      <!-- Fase -->
+      <ion-item>
+        <ion-label position="stacked">Fase</ion-label>
+        <ion-input formControlName="Fase"></ion-input>
+      </ion-item>
+
+      <!-- Activo -->
+      <ion-item>
+        <ion-label position="stacked">Activo</ion-label>
+        <ion-input formControlName="Activo"></ion-input>
+      </ion-item>
+
+      <!-- Setup -->
+      <ion-item>
+        <ion-label position="stacked">Setup</ion-label>
+        <ion-input formControlName="Setup"></ion-input>
+      </ion-item>
+
+      <!-- Riesgo -->
+      <ion-item>
+        <ion-label position="stacked">Riesgo</ion-label>
+        <ion-input formControlName="Riesgo"></ion-input>
+      </ion-item>
+
+      <!-- Resultado -->
+      <ion-item>
+        <ion-label position="stacked">Resultado</ion-label>
+        <ion-input formControlName="Resultado"></ion-input>
+      </ion-item>
+
+      <!-- Balance Actual -->
+      <ion-item>
+        <ion-label position="stacked">Balance Actual</ion-label>
+        <ion-input type="number" formControlName="BalanceActual"></ion-input>
+      </ion-item>
+
+      <!-- Estrategia -->
+      <ion-item>
+        <ion-label position="stacked">Estrategia</ion-label>
+        <ion-input formControlName="Estrategia"></ion-input>
+      </ion-item>
+
+      <!-- Estatus -->
+      <ion-item>
+        <ion-label position="stacked">Estatus</ion-label>
+        <ion-select formControlName="Estatus" placeholder="Selecciona estatus">
+          <ion-select-option value="Abierta">Abierta</ion-select-option>
+          <ion-select-option value="Cerrada">Cerrada</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Comentario -->
+      <ion-item>
+        <ion-label position="stacked">Comentario</ion-label>
+        <ion-textarea formControlName="Comentario"></ion-textarea>
+      </ion-item>
+
+      <!-- Trader -->
+      <ion-item>
+        <ion-label position="stacked">Id Trader</ion-label>
+        <ion-input formControlName="IdTrader"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Nombre Trader</ion-label>
+        <ion-input formControlName="NombreTrader"></ion-input>
+      </ion-item>
+
+      <!-- Imagen -->
+      <ion-item>
+        <ion-label position="stacked">Imagen</ion-label>
+        <input type="file" (change)="subirImagen($event)" />
+      </ion-item>
+
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" [disabled]="!operativaForm.valid">
+        Guardar Operativa
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

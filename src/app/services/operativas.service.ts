@@ -5,6 +5,7 @@ import {
   collectionData,
   addDoc,
   doc,
+  docData,
   updateDoc,
   deleteDoc,
   getDocs,
@@ -15,7 +16,7 @@ import {
   DocumentData
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { Operativa } from '../models/operativas.model'
+import { Operativa } from '../models/operativas.model';
 
 @Injectable({
   providedIn: 'root'
@@ -63,6 +64,14 @@ export class OperativasService {
   }
 
   /**
+   * Obtener una operativa por su ID
+   */
+  obtenerOperativaPorId(id: string): Observable<Operativa | undefined> {
+    const ref = doc(this.firestore, `operativas/${id}`);
+    return docData(ref, { idField: 'id' }) as Observable<Operativa | undefined>;
+  }
+
+  /**
    * Agregar nueva operativa
    */
   async agregarOperativa(o: Operativa) {
@@ -103,4 +112,5 @@ export class OperativasService {
     return deleteDoc(ref);
   }
 }
+
 

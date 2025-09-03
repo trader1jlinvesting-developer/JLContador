@@ -1,4 +1,5 @@
 export interface Operativa {
+  id?: string;                //Id para manejo de Firebase
   idOperativa: number;        // int
   numOperativa: number;       // int
   fecha: Date;                // Date
