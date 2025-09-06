@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule,FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ReactiveFormsModule,FormGroup, FormBuilder, FormsModule } from '@angular/forms';
 import { NavController, ToastController, IonicModule } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { OperativasService } from 'src/app/services/operativas.service';
 import { Operativa } from '../../models/operativas.model';
 import { IonHeader, IonLabel, IonToolbar, IonButton } from "@ionic/angular/standalone";
 
-
 @Component({
   selector: 'app-operativasform',
   templateUrl: './operativasform.page.html',
   styleUrls: ['./operativasform.page.scss'],
-  imports: [IonHeader, IonicModule],
+  imports: [IonHeader, IonicModule,  ReactiveFormsModule, FormsModule  ]      
 })
 export class OperativasFormPage implements OnInit {
   operativaForm!: FormGroup;
@@ -31,16 +30,16 @@ export class OperativasFormPage implements OnInit {
 
     // ✅ Definir formulario
     this.operativaForm = this.fb.group({
-      Fecha: [null, Validators.required],
+      Fecha: [null],
       Ciclo: [''],
       Fase: [''],
-      Activo: ['', Validators.required],
+      Activo: [''],
       Setup: [''],
       Riesgo: [''],
       Resultado: [''],
       BalanceActual: [0],
       Estrategia: [''],
-      Estatus: ['Abierta', Validators.required],
+      Estatus: ['Abierta'],
       Comentario: [''],
       IdTrader: [''],
       NombreTrader: ['']

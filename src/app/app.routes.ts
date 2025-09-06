@@ -21,6 +21,14 @@ export const routes: Routes = [
       import('./pages/movimientos/movimientos.routes').then(
         (m) => m.routes
       ),
+  }
+  ,
+   {
+    path: 'operativas',
+    loadChildren: () =>
+      import('./pages/Operativas/operativas.router').then(
+        (s) => s.routes
+      ),
   },
 ];
 

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {  
-  IonContent,
-  IonHeader,
+  IonContent,  
   IonMenu, 
   IonTitle,
-  IonToolbar, IonList, IonItem, IonIcon, IonLabel, IonNote } from '@ionic/angular/standalone';
+  IonToolbar, IonList, IonItem, IonIcon, IonLabel, IonNote, IonHeader } from '@ionic/angular/standalone';
 
 import { RouterModule } from '@angular/router'; //
 
@@ -12,7 +11,7 @@ import { RouterModule } from '@angular/router'; //
   selector: 'app-menu-principal',
   templateUrl: './menu-principal.component.html',
   styleUrls: ['./menu-principal.component.scss'],
-  imports: [IonNote, IonLabel, IonIcon, IonItem, IonList, IonContent, IonHeader, IonMenu, IonTitle, IonToolbar, RouterModule],
+  imports: [IonHeader, IonNote, IonLabel, IonIcon, IonItem, IonList, IonContent, IonMenu, IonTitle, IonToolbar, RouterModule],
 })
 export class MenuPrincipalComponent  implements OnInit {
 
