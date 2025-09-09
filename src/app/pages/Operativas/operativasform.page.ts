@@ -39,24 +39,28 @@ activos = [
   { id: 0, label: 'NA' },
   { id: 1, label: 'NQ' },
   { id: 2, label: 'BTC' },
-  { id: 3, label: 'MNQ' } 
+  { id: 3, label: 'MNQ' },
+  { id: 4, label: 'IA' } ,
+  { id: 3, label: 'SALO' },
+  { id: 4, label: 'CARLOS' } 
 
 ];
 
 setups = [
   { id: 0, label: 'NA' },
-  { id: 1, label: 'J1' },
-  { id: 2, label: 'J2' },
-  { id: 3, label: 'J3' } ,
-  { id: 4, label: 'J12' },
-  { id: 5, label: 'A1' },
-  { id: 6, label: 'A2' },
-  { id: 7, label: 'A3' } ,
-  { id: 8, label: 'A4' },
-  { id: 9, label: 'A+' },
-  { id: 10, label: 'R1' },
-  { id: 11, label: 'R2' } ,
-  { id: 12, label: 'R+' } 
+  { id: 1, label: 'A1' },
+  { id: 2, label: 'A2' },
+  { id: 3, label: 'A3' } ,
+  { id: 4, label: 'A4' },
+  { id: 5, label: 'A+' },
+  { id: 6, label: 'R1' },
+  { id: 7, label: 'R2' } ,
+  { id: 8, label: 'R+' } ,
+  { id: 9, label: 'J1' },
+  { id: 10, label: 'J2' },
+  { id: 11, label: 'J3' } ,
+  { id: 12, label: 'J12' },
+  
 ];
 
 riesgos = [
@@ -84,7 +88,7 @@ estrategias = [
 estatus = [
   { id: 0, label: 'NA' },
   { id: 1, label: 'Sim' },
-  { id: 2, label: 'Live Sim' },
+  { id: 2, label: 'LiveSim' },
   { id: 3, label: 'Aprobada' } ,
   { id: 4, label: 'Fallida' } ,
   { id: 5, label: 'Cancelada' } ,
@@ -92,7 +96,14 @@ estatus = [
 
 ];
 
+resultados = [
+  { id: 0, label: 'NA' },
+  { id: 1, label: 'Cara' },
+  { id: 2, label: 'Sello' },
+  { id: 3, label: 'Stop' } ,
+  { id: 4, label: 'Profit' }   
 
+];
 
   constructor(
     private fb: FormBuilder,
@@ -117,11 +128,12 @@ estatus = [
   Resultado: [''],
   BalanceActual: [0],
   Estrategia: [''],
-  Estatus: ['Abierta'],
+  Estatus: [''],
   Comentario: [''],
   IdTrader: [''],
   NombreTrader: [''],
-  Moneda:['']
+  Valor:['']
+  
 });
 
 

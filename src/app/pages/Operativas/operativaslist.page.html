@@ -8,8 +8,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ng-container *ngIf="operativas$ | async as operativas; else noData">
+<ion-content >
+  <!-- <ng-container *ngIf="operativas$ | async as operativas; else noData">
     <ion-list>
       <ion-item-sliding *ngFor="let o of operativas">
         <ion-item>
@@ -37,11 +37,33 @@
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>
-  </ng-container>
+  </ng-container> -->
+
+
+  <ion-list *ngIf="operativas$ | async as operativas; else noData" >
+    <ion-item *ngFor="let o of operativas">
+      <ion-label>
+        <h3>#{{ o.NumOperativa }} - Fecha: {{ o.Fecha }} / Balance: {{ o.BalanceActual }} </h3>     
+        <p> {{ o.NumCuenta }} : {{ o.Setup }} / {{ o.Resultado }} / {{ o.Valor }} </p>
+        <p> Comentario: {{ o.Comentario }} </p>
+      </ion-label>
+
+      <!-- <ion-button fill="clear" slot="end" (click)="editar(m.id)">
+        <ion-icon name="create-outline" size="large" ></ion-icon>
+      </ion-button> -->
+      <!-- <ion-button fill="clear" slot="end" color="danger" (click)="eliminar(m.id)">
+        <ion-icon name="trash-outline" size="large"  ></ion-icon>
+      </ion-button> -->
+
+    </ion-item>
+  </ion-list>
+
+
+
 
   <!-- Botón flotante -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="success" (click)="irCrear()">
+    <ion-fab-button color="tertiary"  (click)="irCrear()">
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>

@@ -18,7 +18,8 @@ export interface Operativa {
   NombreTrader: string;       // string
   Imagen: Uint8Array | null;  // byte (lo manejamos como array de bytes o null)
   FechaRegistro: Date;        // Date
-  Moneda: string;
+  Valor?: number; 
+ 
   
 }
 

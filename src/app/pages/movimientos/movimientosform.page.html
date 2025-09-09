@@ -134,11 +134,15 @@
     </ion-item>
 
     <ion-item>
+    <ion-textarea>
       <!-- <ion-label position="stacked">Nota</ion-label> -->
-      <ion-input formControlName="Nota" placeholder="Nota" ></ion-input>
+      <ion-input formControlName="Nota" placeholder="Nota" 
+        autoGrow="true"
+        rows="2"
+      ></ion-input>
+    </ion-textarea>
     </ion-item>
-
-     <br>
+    
     
     <ion-button expand="block" type="submit" color="success" class="ion-margin-top">Guardar</ion-button>
 
