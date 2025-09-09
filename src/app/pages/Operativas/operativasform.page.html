@@ -8,17 +8,7 @@
   <form [formGroup]="operativaForm" (ngSubmit)="guardarOperativa()">
     <ion-list lines="full">
 
-      <!-- Fecha -->
-      <!-- <ion-item>
-        <ion-label position="stacked">Fecha</ion-label>
-        <ion-datetime
-          formControlName="Fecha"
-          display-format="YYYY-MM-DD"
-          placeholder="Selecciona fecha">
-        </ion-datetime>
-      </ion-item> -->
-
-      <ion-item  >
+    <ion-item  >
     <ion-label>Fecha: </ion-label>
     <ion-datetime-button datetime="Fecha"  ></ion-datetime-button>
         <ion-modal [keepContentsMounted]="true">
@@ -34,23 +24,36 @@
 
      <!-- NumCuenta -->
       <ion-item>        
-        <ion-input formControlName="numCuenta" placeholder="Num Cuenta"></ion-input>
+        <ion-input formControlName="NumCuenta" placeholder="Num Cuenta"></ion-input>
       </ion-item>
     
-    <ion-item>
-  <ion-label>Fase</ion-label>
-  <ion-select 
-    formControlName="Fase" 
-    (ionChange)="onFaseChange($event)"
-    placeholder="Seleccione una fase">
-    
+    <!-- Fase -->
+<ion-item>
+  <ion-label position="stacked">Fase</ion-label>
+  <ion-select
+    formControlName="Fase"
+    placeholder="Seleccione una fase"
+    interface="popover"
+    (ionChange)="onFaseChange($event)">
     <ion-select-option *ngFor="let fase of fases" [value]="fase.id">
       {{ fase.label }}
     </ion-select-option>
-    
   </ion-select>
 </ion-item>
 
+
+<ion-item>
+  <ion-select
+    formControlName="Moneda"
+    label="Moneda"
+    interface="popover"
+    placeholder="Seleccione"
+  >
+    <ion-select-option *ngFor="let m of monedas" [value]="m.value">
+      {{ m.label }}
+    </ion-select-option>
+  </ion-select>
+  </ion-item>
  
 
       <!-- Activo -->

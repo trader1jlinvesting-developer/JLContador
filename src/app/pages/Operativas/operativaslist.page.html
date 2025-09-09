@@ -14,11 +14,11 @@
       <ion-item-sliding *ngFor="let o of operativas">
         <ion-item>
           <ion-label>
-            <h2>{{ o.numOperativa || o.numOperativa || 'N/A' }}</h2>
-            <p>Fecha: {{ formatFecha(o.fecha || o.fecha) }}</p>
-            <p>Activo: {{ o.activo || o.activo }}</p>
-            <p>Resultado: {{ o.resultado || o.resultado }}</p>
-            <p><strong>Balance:</strong> {{ o.balanceActual || o.balanceActual }}</p>
+            <h2>{{ o.NumOperativa || o.NumOperativa || 'N/A' }}</h2>
+            <p>Fecha: {{ formatFecha(o.Fecha || o.Fecha) }}</p>
+            <p>Activo: {{ o.Activo || o.Activo }}</p>
+            <p>Resultado: {{ o.Resultado || o.Resultado }}</p>
+            <p><strong>Balance:</strong> {{ o.BalanceActual || o.BalanceActual }}</p>
           </ion-label>
 
           <ion-buttons slot="end">

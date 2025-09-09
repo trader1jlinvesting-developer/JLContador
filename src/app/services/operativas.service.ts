@@ -53,7 +53,7 @@ export class OperativasService {
     if (snapshot.empty) return 1;
 
     const ultimo = snapshot.docs[0].data() as Operativa;
-    return (ultimo.numOperativa || 0) + 1;
+    return (ultimo.NumOperativa || 0) + 1;
   }
 
   /**
@@ -80,8 +80,8 @@ export class OperativasService {
     const op: WithFieldValue<DocumentData> = {
       ...o,
       NumOperativa: numero,
-      Fecha: this.parsearFecha(o.fecha),
-      FechaRegistro: this.parsearFecha(o.fechaRegistro)
+      Fecha: this.parsearFecha(o.Fecha),
+      FechaRegistro: this.parsearFecha(o.FechaRegistro)
     };
 
     return addDoc(this.coll, op);
@@ -95,9 +95,9 @@ export class OperativasService {
 
     const nuevosDatos: Partial<Operativa> = {
       ...datos,
-      fecha: datos.fecha ? this.parsearFecha(datos.fecha) : undefined,
-      fechaRegistro: datos.fechaRegistro
-        ? this.parsearFecha(datos.fechaRegistro)
+      Fecha: datos.Fecha ? this.parsearFecha(datos.Fecha) : undefined,
+      FechaRegistro: datos.FechaRegistro
+        ? this.parsearFecha(datos.FechaRegistro)
         : undefined
     };
 

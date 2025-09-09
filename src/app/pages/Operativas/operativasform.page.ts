@@ -1,20 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule,FormGroup, FormBuilder, FormsModule } from '@angular/forms';
-import { NavController, ToastController, IonicModule } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
+import { ReactiveFormsModule,FormGroup, FormBuilder, FormsModule, Validators } from '@angular/forms';
+import { NavController, ToastController, IonicModule, AlertController } from '@ionic/angular';
+import { ActivatedRoute,   RouterModule } from '@angular/router';
 import { OperativasService } from 'src/app/services/operativas.service';
 import { Operativa } from '../../models/operativas.model';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-operativasform',
   templateUrl: './operativasform.page.html',
   styleUrls: ['./operativasform.page.scss'],
-  imports: [IonicModule,  ReactiveFormsModule, FormsModule  ]      
+  standalone: true,
+  imports: [
+    CommonModule,          // <-- Necesario para *ngFor y *ngIf
+    IonicModule,
+    ReactiveFormsModule,
+    FormsModule
+  ]
 })
+
+
 export class OperativasFormPage implements OnInit {
   operativaForm!: FormGroup;
-  idOperativa: string | null = null;
+  IdOperativa: string | null = null;
   imagenFile: File | null = null;
 
     // Catálogos locales para mapear id -> texto
@@ -26,6 +35,11 @@ fases = [
 
 ];
 
+monedas = [
+  { value: 'USD', label: 'USD' },
+  { value: 'COP', label: 'COP' },
+];
+
   constructor(
     private fb: FormBuilder,
     private operativasService: OperativasService,
@@ -35,28 +49,31 @@ fases = [
   ) {}
 
   ngOnInit() {
-    this.idOperativa = this.route.snapshot.paramMap.get('id');
+    this.IdOperativa = this.route.snapshot.paramMap.get('id');
 
     // ✅ Definir formulario
-    this.operativaForm = this.fb.group({
-      Fecha: [null],
-      Ciclo: [''],
-      Fase: [''],
-      Activo: [''],
-      Setup: [''],
-      Riesgo: [''],
-      Resultado: [''],
-      BalanceActual: [0],
-      Estrategia: [''],
-      Estatus: ['Abierta'],
-      Comentario: [''],
-      IdTrader: [''],
-      NombreTrader: ['']
-    });
+   this.operativaForm = this.fb.group({
+  Fecha: [null],
+  Ciclo: [''],
+  NumCuenta:[''],
+  Fase: [''],   // <-- mismo nombre que en el HTML
+  Activo: [''],
+  Setup: [''],
+  Riesgo: [''],
+  Resultado: [''],
+  BalanceActual: [0],
+  Estrategia: [''],
+  Estatus: ['Abierta'],
+  Comentario: [''],
+  IdTrader: [''],
+  NombreTrader: [''],
+  Moneda:['']
+});
+
 
     // ✅ Si hay id → editar
-    if (this.idOperativa) {
-      this.cargarOperativa(this.idOperativa);
+    if (this.IdOperativa) {
+      this.cargarOperativa(this.IdOperativa);
     }
   }
 
@@ -84,9 +101,9 @@ fases = [
     };
 
     try {
-      if (this.idOperativa) {
+      if (this.IdOperativa) {
         // Editar
-        await this.operativasService.actualizarOperativa(this.idOperativa, datos);
+        await this.operativasService.actualizarOperativa(this.IdOperativa, datos);
         this.mostrarToast('Operativa actualizada ✅');
       } else {
         // Crear
@@ -128,11 +145,18 @@ onFaseChange(event: any) {
   console.log("Fase seleccionada:", faseSeleccionada);
   
   // Si quieres guardar el id
-  this.operativaForm.patchValue({ Fase: id });
+  //this.operativaForm.patchValue({ fase: id });
 
   // Si prefieres guardar el texto en vez del id
-  // this.operativaForm.patchValue({ Fase: faseSeleccionada?.label });
+   this.operativaForm.patchValue({ Fase: faseSeleccionada?.label });
 }
+
+onMonedaChange(event: any) {  
+  const text = event.detail.value; // Aquí ya es "USD" o "COP"
+  const label = event.target.textContent.trim(); 
+  this.operativaForm.patchValue({ Moneda: text });
+}
+
 
 
 
