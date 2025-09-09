@@ -27,107 +27,106 @@
         <ion-input formControlName="NumCuenta" placeholder="Num Cuenta"></ion-input>
       </ion-item>
     
-    <!-- Fase -->
-<ion-item>
-  <ion-label position="stacked">Fase</ion-label>
+   <ion-item>
   <ion-select
-    formControlName="Fase"
-    placeholder="Seleccione una fase"
+    formControlName="Activo"
+    label="Activo"
     interface="popover"
-    (ionChange)="onFaseChange($event)">
-    <ion-select-option *ngFor="let fase of fases" [value]="fase.id">
-      {{ fase.label }}
-    </ion-select-option>
-  </ion-select>
-</ion-item>
-
-
-<ion-item>
-  <ion-select
-    formControlName="Moneda"
-    label="Moneda"
-    interface="popover"
-    placeholder="Seleccione"
-  >
-    <ion-select-option *ngFor="let m of monedas" [value]="m.value">
-      {{ m.label }}
+    placeholder="Seleccione" >
+    <ion-select-option *ngFor="let ac of activos" [value]="ac.id">
+      {{ ac.label }}
     </ion-select-option>
   </ion-select>
   </ion-item>
- 
 
-      <!-- Activo -->
-      <ion-item>
-        <ion-label position="stacked">Activo</ion-label>
-        <ion-input formControlName="Activo"></ion-input>
-      </ion-item>
 
-      <!-- Setup -->
-      <ion-item>
-        <ion-label position="stacked">Setup</ion-label>
-        <ion-input formControlName="Setup"></ion-input>
-      </ion-item>
+<ion-item>
+  <ion-select
+    formControlName="Fase"
+    label="Fase"
+    interface="popover"
+    placeholder="Seleccione" >
+    <ion-select-option *ngFor="let fs of fases" [value]="fs.id">
+      {{ fs.label }}
+    </ion-select-option>
+  </ion-select>
+  </ion-item>
 
-      <!-- Riesgo -->
-      <ion-item>
-        <ion-label position="stacked">Riesgo</ion-label>
-        <ion-input formControlName="Riesgo"></ion-input>
-      </ion-item>
+  <ion-item>
+  <ion-select
+    formControlName="Setup"
+    label="Setup"
+    interface="popover"
+    placeholder="Seleccione" >
+    <ion-select-option *ngFor="let st of setups" [value]="st.id">
+      {{ st.label }}
+    </ion-select-option>
+  </ion-select>
+  </ion-item>
 
-      <!-- Resultado -->
-      <ion-item>
-        <ion-label position="stacked">Resultado</ion-label>
-        <ion-input formControlName="Resultado"></ion-input>
-      </ion-item>
+  <ion-item>
+  <ion-select
+    formControlName="Riesgo"
+    label="Riesgo"
+    interface="popover"
+    placeholder="Seleccione" >
+    <ion-select-option *ngFor="let rg of riesgos" [value]="rg.id">
+      {{ rg.label }}
+    </ion-select-option>
+  </ion-select>
+  </ion-item>
 
-      <!-- Balance Actual -->
-      <ion-item>
-        <ion-label position="stacked">Balance Actual</ion-label>
-        <ion-input type="number" formControlName="BalanceActual"></ion-input>
-      </ion-item>
+   <ion-item>
+  <ion-select
+    formControlName="Estrategia"
+    label="Estrategia"
+    interface="popover"
+    placeholder="Seleccione" >
+    <ion-select-option *ngFor="let st of estrategias" [value]="st.id">
+      {{ st.label }}
+    </ion-select-option>
+  </ion-select>
+  </ion-item>
+     
+     <ion-item>
+    <ion-select
+      formControlName="Estatus"
+      label="Estatus"
+      interface="popover"
+      placeholder="Seleccione" >
+      <ion-select-option *ngFor="let sts of estatus" [value]="sts.id">
+        {{ sts.label }}
+      </ion-select-option>
+    </ion-select>
+    </ion-item>
 
-      <!-- Estrategia -->
-      <ion-item>
-        <ion-label position="stacked">Estrategia</ion-label>
-        <ion-input formControlName="Estrategia"></ion-input>
-      </ion-item>
-
-      <!-- Estatus -->
-      <ion-item>
-        <ion-label position="stacked">Estatus</ion-label>
-        <ion-select formControlName="Estatus" placeholder="Selecciona estatus">
-          <ion-select-option value="Abierta">Abierta</ion-select-option>
-          <ion-select-option value="Cerrada">Cerrada</ion-select-option>
-        </ion-select>
-      </ion-item>
 
       <!-- Comentario -->
-      <ion-item>
-        <ion-label position="stacked">Comentario</ion-label>
-        <ion-textarea formControlName="Comentario"></ion-textarea>
+      <ion-item>        
+        <ion-textarea formControlName="Comentario" placeholder="Comentario"></ion-textarea>
       </ion-item>
 
        <!-- Ciclo -->
       <ion-item>
-        <ion-label position="stacked">Ciclo</ion-label>
-        <ion-input formControlName="Ciclo"></ion-input>
+        
+        <ion-input formControlName="Ciclo" placeholder="Ciclo" ></ion-input>
       </ion-item>
 
       <!-- Trader -->
       <ion-item>
-        <ion-label position="stacked">Id Trader</ion-label>
-        <ion-input formControlName="IdTrader"></ion-input>
+        
+        <ion-input formControlName="IdTrader" placeholder="IdTrader"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked">Nombre Trader</ion-label>
-        <ion-input formControlName="NombreTrader"></ion-input>
+        
+        <ion-input formControlName="NombreTrader" placeholder="NombreTrader"></ion-input>
       </ion-item>
 
       <!-- Imagen -->
       <ion-item>
-        <ion-label position="stacked">Imagen</ion-label>
-        <input type="file" (change)="subirImagen($event)" />
+        
+        <input type="file" (change)="subirImagen($event)" placeholder="Imagen" />
       </ion-item>
 
     </ion-list>

@@ -26,7 +26,7 @@ export class OperativasFormPage implements OnInit {
   IdOperativa: string | null = null;
   imagenFile: File | null = null;
 
-    // Catálogos locales para mapear id -> texto
+// Catálogos locales para mapear id -> texto
 fases = [
   { id: 0, label: 'NA' },
   { id: 1, label: '1' },
@@ -35,10 +35,64 @@ fases = [
 
 ];
 
-monedas = [
-  { value: 'USD', label: 'USD' },
-  { value: 'COP', label: 'COP' },
+activos = [
+  { id: 0, label: 'NA' },
+  { id: 1, label: 'NQ' },
+  { id: 2, label: 'BTC' },
+  { id: 3, label: 'MNQ' } 
+
 ];
+
+setups = [
+  { id: 0, label: 'NA' },
+  { id: 1, label: 'J1' },
+  { id: 2, label: 'J2' },
+  { id: 3, label: 'J3' } ,
+  { id: 4, label: 'J12' },
+  { id: 5, label: 'A1' },
+  { id: 6, label: 'A2' },
+  { id: 7, label: 'A3' } ,
+  { id: 8, label: 'A4' },
+  { id: 9, label: 'A+' },
+  { id: 10, label: 'R1' },
+  { id: 11, label: 'R2' } ,
+  { id: 12, label: 'R+' } 
+];
+
+riesgos = [
+  { id: 0, label: 'NA' },
+  { id: 1, label: '1:1' },
+  { id: 2, label: '1:1.5' },
+  { id: 3, label: '1:2' } ,
+  { id: 4, label: '1:3' } ,
+  { id: 5, label: '1:4' } ,
+  { id: 6, label: '1:5' } ,
+  { id: 5, label: '1:N3' } 
+
+];
+
+estrategias = [
+  { id: 0, label: 'NA' },
+  { id: 1, label: 'JBase' },
+  { id: 2, label: 'JLProfessional' },
+  { id: 3, label: 'JLBasic' } ,
+  { id: 4, label: 'JLInvertida' } ,
+  { id: 5, label: 'Otra' }  
+
+];
+
+estatus = [
+  { id: 0, label: 'NA' },
+  { id: 1, label: 'Sim' },
+  { id: 2, label: 'Live Sim' },
+  { id: 3, label: 'Aprobada' } ,
+  { id: 4, label: 'Fallida' } ,
+  { id: 5, label: 'Cancelada' } ,
+  { id: 6, label: 'Otra' }
+
+];
+
+
 
   constructor(
     private fb: FormBuilder,
@@ -139,23 +193,19 @@ monedas = [
   }
 
 
-onFaseChange(event: any) {
-  const id = event.detail.value;
-  const faseSeleccionada = this.fases.find(t => t.id === id);
-  console.log("Fase seleccionada:", faseSeleccionada);
-  
-  // Si quieres guardar el id
-  //this.operativaForm.patchValue({ fase: id });
-
-  // Si prefieres guardar el texto en vez del id
-   this.operativaForm.patchValue({ Fase: faseSeleccionada?.label });
-}
-
-onMonedaChange(event: any) {  
-  const text = event.detail.value; // Aquí ya es "USD" o "COP"
+//Evento de la lista de Fases
+onFaseChange(event: any) {  
+  const text = event.detail.value; // 
   const label = event.target.textContent.trim(); 
-  this.operativaForm.patchValue({ Moneda: text });
+  this.operativaForm.patchValue({ Fase: text });
 }
+
+//Evento de la lista de Activos
+// onActivoChange(event: any) {  
+//   const text = event.detail.value; // 
+//   const label = event.target.textContent.trim(); 
+//   this.operativaForm.patchValue({ Activo: text });
+// }
 
 
 
