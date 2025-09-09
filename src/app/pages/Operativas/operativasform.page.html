@@ -9,26 +9,49 @@
     <ion-list lines="full">
 
       <!-- Fecha -->
-      <ion-item>
+      <!-- <ion-item>
         <ion-label position="stacked">Fecha</ion-label>
         <ion-datetime
           formControlName="Fecha"
           display-format="YYYY-MM-DD"
           placeholder="Selecciona fecha">
         </ion-datetime>
-      </ion-item>
+      </ion-item> -->
 
-      <!-- Ciclo -->
-      <ion-item>
-        <ion-label position="stacked">Ciclo</ion-label>
-        <ion-input formControlName="Ciclo"></ion-input>
-      </ion-item>
+      <ion-item  >
+    <ion-label>Fecha: </ion-label>
+    <ion-datetime-button datetime="Fecha"  ></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+            <ion-datetime
+                id="Fecha"
+                presentation="date"
+                (ionChange)="operativaForm.get('Fecha')?.setValue($event.detail.value)">
+            </ion-datetime>
+            </ng-template>
+        </ion-modal>
+    </ion-item>
 
-      <!-- Fase -->
-      <ion-item>
-        <ion-label position="stacked">Fase</ion-label>
-        <ion-input formControlName="Fase"></ion-input>
+     <!-- NumCuenta -->
+      <ion-item>        
+        <ion-input formControlName="numCuenta" placeholder="Num Cuenta"></ion-input>
       </ion-item>
+    
+    <ion-item>
+  <ion-label>Fase</ion-label>
+  <ion-select 
+    formControlName="Fase" 
+    (ionChange)="onFaseChange($event)"
+    placeholder="Seleccione una fase">
+    
+    <ion-select-option *ngFor="let fase of fases" [value]="fase.id">
+      {{ fase.label }}
+    </ion-select-option>
+    
+  </ion-select>
+</ion-item>
+
+ 
 
       <!-- Activo -->
       <ion-item>
@@ -79,6 +102,12 @@
       <ion-item>
         <ion-label position="stacked">Comentario</ion-label>
         <ion-textarea formControlName="Comentario"></ion-textarea>
+      </ion-item>
+
+       <!-- Ciclo -->
+      <ion-item>
+        <ion-label position="stacked">Ciclo</ion-label>
+        <ion-input formControlName="Ciclo"></ion-input>
       </ion-item>
 
       <!-- Trader -->

@@ -4,18 +4,27 @@ import { NavController, ToastController, IonicModule } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { OperativasService } from 'src/app/services/operativas.service';
 import { Operativa } from '../../models/operativas.model';
-import { IonHeader, IonLabel, IonToolbar, IonButton } from "@ionic/angular/standalone";
+
 
 @Component({
   selector: 'app-operativasform',
   templateUrl: './operativasform.page.html',
   styleUrls: ['./operativasform.page.scss'],
-  imports: [IonHeader, IonicModule,  ReactiveFormsModule, FormsModule  ]      
+  imports: [IonicModule,  ReactiveFormsModule, FormsModule  ]      
 })
 export class OperativasFormPage implements OnInit {
   operativaForm!: FormGroup;
   idOperativa: string | null = null;
   imagenFile: File | null = null;
+
+    // Catálogos locales para mapear id -> texto
+fases = [
+  { id: 0, label: 'NA' },
+  { id: 1, label: '1' },
+  { id: 2, label: '2' },
+  { id: 3, label: '3' } 
+
+];
 
   constructor(
     private fb: FormBuilder,
@@ -111,4 +120,20 @@ export class OperativasFormPage implements OnInit {
     });
     toast.present();
   }
+
+
+onFaseChange(event: any) {
+  const id = event.detail.value;
+  const faseSeleccionada = this.fases.find(t => t.id === id);
+  console.log("Fase seleccionada:", faseSeleccionada);
+  
+  // Si quieres guardar el id
+  this.operativaForm.patchValue({ Fase: id });
+
+  // Si prefieres guardar el texto en vez del id
+  // this.operativaForm.patchValue({ Fase: faseSeleccionada?.label });
+}
+
+
+
 }
