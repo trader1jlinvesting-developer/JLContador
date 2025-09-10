@@ -136,6 +136,16 @@ resultados = [
   
 });
 
+// Si el formControl de fecha está vacío → asigna la fecha actual
+  const fechaHoy = new Date().toISOString().substring(0, 10); // yyyy-MM-dd
+  if (!this.operativaForm.get('FechaMovimiento')?.value) {
+    this.operativaForm.patchValue({ FechaMovimiento: fechaHoy });
+  }
+
+  if (!this.operativaForm.get('FechaRegistro')?.value) {
+    this.operativaForm.patchValue({ FechaRegistro: fechaHoy });
+  }
+
 
     // ✅ Si hay id → editar
     if (this.IdOperativa) {
@@ -161,6 +171,13 @@ resultados = [
   async guardarOperativa() {
     if (this.operativaForm.invalid) return;
 
+    const data = this.operativaForm.value as Partial<Operativa>;      
+    
+    //Se convierte el tipo de fecha a date para que no tenga problemas con firebase
+    if(data.Fecha){
+      data.Fecha = new Date(data.Fecha);
+    }
+    
     const datos: Operativa = {
       ...this.operativaForm.value,
       Imagen: this.imagenFile ? await this.fileToBase64(this.imagenFile) : null
