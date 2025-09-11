@@ -41,8 +41,8 @@ activos = [
   { id: 2, label: 'BTC' },
   { id: 3, label: 'MNQ' },
   { id: 4, label: 'IA' } ,
-  { id: 3, label: 'SALO' },
-  { id: 4, label: 'CARLOS' } 
+  { id: 3, label: 'IA-SALO' },
+  { id: 4, label: 'IA-CARLOS' } 
 
 ];
 
@@ -60,6 +60,10 @@ setups = [
   { id: 10, label: 'J2' },
   { id: 11, label: 'J3' } ,
   { id: 12, label: 'J12' },
+  { id: 13, label: 'A1-A2' },
+  { id: 14, label: 'A2-A3' },
+  { id: 15, label: 'A3-A4' },
+   { id: 16, label: 'A4-A+' }
   
 ];
 
@@ -92,7 +96,8 @@ estatus = [
   { id: 3, label: 'Aprobada' } ,
   { id: 4, label: 'Fallida' } ,
   { id: 5, label: 'Cancelada' } ,
-  { id: 6, label: 'Otra' }
+  { id: 6, label: 'Otra' },
+  { id: 7, label: 'Live' },
 
 ];
 
@@ -101,7 +106,8 @@ resultados = [
   { id: 1, label: 'Cara' },
   { id: 2, label: 'Sello' },
   { id: 3, label: 'Stop' } ,
-  { id: 4, label: 'Profit' }   
+  { id: 4, label: 'Profit' },
+  { id: 5, label: 'BE' }  
 
 ];
 
