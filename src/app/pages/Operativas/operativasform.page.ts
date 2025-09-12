@@ -75,7 +75,8 @@ riesgos = [
   { id: 4, label: '1:3' } ,
   { id: 5, label: '1:4' } ,
   { id: 6, label: '1:5' } ,
-  { id: 5, label: '1:N3' } 
+  { id: 5, label: '1:N3' } ,
+  { id: 5, label: '2:2 take out' } 
 
 ];
 
