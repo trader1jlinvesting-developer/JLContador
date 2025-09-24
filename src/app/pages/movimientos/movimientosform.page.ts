@@ -50,7 +50,9 @@ conceptos = [
   { id: 12, label: 'Cuenta Live' },
   { id: 13, label: 'Pago' },
   { id: 14, label: 'Comisión' },
-  { id: 15, label: 'Agente IA' }
+  { id: 15, label: 'Agente IA' },
+  { id: 16, label: 'Cuenta 25K' },
+  { id: 17, label: 'Fee Activación 25K' }
 
 ];
 
