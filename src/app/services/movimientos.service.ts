@@ -18,12 +18,13 @@ import {
 import { Movimiento } from '../models/movimiento.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AgrupadoMes } from '../models/agrupado-mes';
 
 @Injectable({ providedIn: 'root' })
 export class MovimientosService {
   private coll = collection(this.firestore, 'movimientos');
 
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore) { }
 
   // 🔹 Prefijos por tipo
   private obtenerPrefijo(tipo: string): string {
@@ -118,6 +119,117 @@ export class MovimientosService {
     );
   }
 
+
+  charBarMovimientos(): Observable<{ [key: string]: number }> {
+    const now = new Date();
+
+    // Primer día del mes actual
+    const start = new Date(now.getFullYear(), now.getMonth(), 1);
+
+    // Último día del mes actual (fin del día)
+    const end = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59, 999);
+
+    const q = query(
+      this.coll,
+      where('FechaMovimiento', '>=', start),
+      where('FechaMovimiento', '<=', end),
+      orderBy('FechaMovimiento', 'desc')
+    );
+
+    return collectionData(q, { idField: 'id' }).pipe(
+      map((items: any[]) => {
+        const agrupado: { [key: string]: number } = {};
+
+        items.forEach(m => {
+          const tipo = m.Tipo || 'SinTipo';
+          const valor = Number(m.Valor) || 0;
+          agrupado[tipo] = (agrupado[tipo] || 0) + valor;
+        });
+
+        return agrupado;
+      })
+    );
+  }
+
+
+
+
+  charLineMovimientosMesActual(): Observable<AgrupadoMes> {
+    const q = query(this.coll, orderBy('FechaRegistro', 'asc'));
+    return collectionData(q, { idField: 'id' }).pipe(
+      map((items: any[]) => {
+        const hoy = new Date();
+        const mesActual = hoy.getMonth();
+        const añoActual = hoy.getFullYear();
+
+        const agrupado: AgrupadoMes = {};
+
+        items.forEach(m => {
+          const fecha = m.FechaMovimiento?.seconds ? new Date(m.FechaMovimiento.seconds * 1000) : new Date(m.FechaMovimiento);
+          if (fecha.getMonth() === mesActual && fecha.getFullYear() === añoActual) {
+            const dia = fecha.getDate().toString();
+            const tipo = m.Tipo || 'SinTipo';
+            const valor = Number(m.Valor) || 0;
+
+            if (!agrupado[dia]) agrupado[dia] = {};
+            agrupado[dia][tipo] = (agrupado[dia][tipo] || 0) + valor;
+          }
+        });
+
+        return agrupado;
+      })
+    );
+  }
+
+
+  charLineMovimientos(): Observable<{ meses: string[], datasets: any[] }> {
+  const q = query(this.coll, orderBy('FechaMovimiento', 'asc'));
+  return collectionData(q, { idField: 'id' }).pipe(
+    map((items: any[]) => {
+      const meses = [
+        'January','February','March','April','May','June',
+        'July','August','September','October','November','December'
+      ];
+
+      // Agrupar dinámicamente por tipo
+      const tiposMap: { [tipo: string]: number[] } = {};
+
+      items.forEach(m => {
+        const fecha = m.FechaMovimiento?.toDate ? m.FechaMovimiento.toDate() : new Date(m.FechaMovimiento);
+        const mesIndex = fecha.getMonth(); // 0 = enero
+        const tipo = m.Tipo || 'SinTipo';
+        const valor = Number(m.Valor) || 0;
+
+        if (!tiposMap[tipo]) {
+          tiposMap[tipo] = Array(12).fill(0);
+        }
+        tiposMap[tipo][mesIndex] += valor;
+      });
+
+      // Convertir a datasets de Chart.js
+      const datasets = Object.keys(tiposMap).map(tipo => {
+        const color = `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 1)`;
+        return {
+          label: tipo,
+          data: tiposMap[tipo],
+          fill: false,
+          tension: 0.1,
+          backgroundColor: color,
+          borderColor: color,
+          pointBackgroundColor: '#fff',
+          pointBorderColor: color,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+        };
+      });
+
+      return { meses, datasets };
+    })
+  );
+}
+
+
+
   obtenerPorCuenta(idCuenta: string): Observable<Movimiento[]> {
     const q = query(
       this.coll,
@@ -136,12 +248,12 @@ export class MovimientosService {
 
   // 🔹 Ahora agrega Número único con prefijo + consecutivo
   async agregarMovimiento(m: Movimiento) {
-      
+
     if (!m.Tipo) {
       console.error('El movimiento no tiene Tipo definido');
-    return;
+      return;
     }
-    
+
     const numero = await this.generarNumero(m.Tipo);
 
     const mov: WithFieldValue<DocumentData> = {

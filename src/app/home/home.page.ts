@@ -3,201 +3,209 @@ import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import Chart from 'chart.js/auto';
+import { MovimientosService } from '../services/movimientos.service';
+import { AgrupadoMes } from '../models/agrupado-mes';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
+Chart.register(ChartDataLabels);
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, RouterModule, ], 
+  imports: [IonicModule, CommonModule, RouterModule,],
 })
 
 export class HomePage {
 
- @ViewChild('barCanvas') barCanvas!: ElementRef;
+  @ViewChild('barCanvas') barCanvas!: ElementRef;
   @ViewChild('lineCanvasDia') lineCanvasDia!: ElementRef;
   @ViewChild('lineCanvas') lineCanvas!: ElementRef;
 
   barChart: any;
   lineChartDia: any;
   lineChart: any;
+  totalesTipos: { tipo: string, valor: number }[] = [];
+  coloresTipos: { [key: string]: string } = {};
 
-  constructor() {}
 
- ngAfterViewInit() {
+  constructor(private svc: MovimientosService,) { }
+
+  ngAfterViewInit() {
     this.barChartMethod();
-  //  this.doughnutChartMethod();
+    //  this.doughnutChartMethod();
     this.lineChartMethod();
     this.lineChartDiaMethod();
   }
 
 
-barChartMethod() {
+  barChartMethod() {
     // Now we need to supply a Chart element reference with an object that defines the type of chart we want to use, and the type of data we want to display.
-    this.barChart = new Chart(this.barCanvas.nativeElement, {
-      type: 'bar',
-      data: {
-        labels: ['Ingresos', 'Gatos'],
-        datasets: [{
-          label: 'Ingresos Vs Gastos',
-          data: [200000, 50000],
-          backgroundColor: [
-            'rgba(64, 204, 18, 0.65)',
-            'rgba(255, 99, 133, 0.59)',
-           
-          ],
-          borderColor: [
-            'rgba(69, 235, 54, 1)',
-            'rgba(255,99,132,1)',
-           
-          ],
+    this.svc.charBarMovimientos().subscribe((data) => {
+      const labels = Object.keys(data);
+      const valores = Object.values(data).map(v => Number(v));
+
+      // generar colores una sola vez y guardarlos
+      this.coloresTipos = {};
+      const datasets = labels.map((tipo, i) => {
+        const color = `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.6)`;
+        this.coloresTipos[tipo] = color;
+
+        return {
+          label: tipo, // 👈 cada dataset tiene como etiqueta el tipo
+          data: [valores[i]], // 👈 solo un valor en cada dataset
+          backgroundColor: color,
+          borderColor: `rgba(0,0,0,0.8)`,
           borderWidth: 1
-        }]
-      },
-      options: {
+        };
+      });
 
-        scales: {
-          y: {
-            beginAtZero: true
+      this.barChart = new Chart(this.barCanvas.nativeElement, {
+        type: 'bar',
+        data: {
+          labels: ['Totales'],
+          datasets: datasets
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top'
+            },
+            datalabels: {   // 👈 configuración del plugin
+              anchor: 'center',
+              align: 'center',
+              color: '#fff',  // texto blanco dentro de la barra,   // color del texto
+              font: {
+                weight: 'bold',
+                size: 14
+              },
+              formatter: (value: number) => value.toLocaleString() // separador de miles
+            }
+          },
+          scales: {
+            y: { beginAtZero: true }
           }
+        },
+        plugins: [ChartDataLabels] // 👈 importante
+      });
 
-        }
-      }
+
+      // datos para los cards
+      this.totalesTipos = labels.map((tipo, i) => ({
+        tipo: tipo,
+        valor: valores[i]
+      }));
     });
+
+
   }
 
   doughnutChartMethod() {
-   /**this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-      type: 'doughnut',
-      data: {
-        labels: ['Ingresos', 'Gastos'],
-        datasets: [{
-          label: 'Total $',
-          data: [50000, 29000],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-            
-          ],
-          hoverBackgroundColor: [
-            '#FF6384',
-            '#FFCE56',
-            
-          ]
-        }]
-      }
-    }); */ 
+    /**this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+       type: 'doughnut',
+       data: {
+         labels: ['Ingresos', 'Gastos'],
+         datasets: [{
+           label: 'Total $',
+           data: [50000, 29000],
+           backgroundColor: [
+             'rgba(255, 99, 132, 0.2)',
+             'rgba(255, 159, 64, 0.2)',
+             
+           ],
+           hoverBackgroundColor: [
+             '#FF6384',
+             '#FFCE56',
+             
+           ]
+         }]
+       }
+     }); */
   }
+
+
 
   lineChartDiaMethod() {
-    this.lineChartDia = new Chart(this.lineCanvasDia.nativeElement, {
-      type: 'line',
-      data: {
-        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-        datasets: [
-          {
-            label: 'Ingresos',
-            fill: false,
-            tension: 0.1,
-            backgroundColor: 'rgba(0,255,187,1)',
-            borderColor: 'rgba(0,255,187,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(0,255,187,1)',
-            pointBackgroundColor: '#fff',
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(0,255,187,1)',
-            pointHoverBorderColor: 'rgba(0,255,187,1)',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [65000, 59000, 80000, 81000, 56000, 55000, 40000, 10000, 5000, 50000, 10000, 15000],
-            spanGaps: false,
+    this.svc.charLineMovimientosMesActual().subscribe((agrupado: AgrupadoMes) => {
+      const dias = Object.keys(agrupado).sort((a, b) => Number(a) - Number(b));
+
+      // 👇 Set global de tipos (se asegura que incluya todos, incluso CXC)
+      const tipos = new Set<string>();
+      dias.forEach(d => {
+        Object.keys(agrupado[d]).forEach(t => tipos.add(t));
+      });
+
+      const datasets = Array.from(tipos).map(tipo => {
+        const color = `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 1)`;
+        return {
+          label: tipo,
+          data: dias.map(d => agrupado[d][tipo] ?? 0), // 👈 Si no existe, lo rellena con 0
+          borderColor: color,
+          backgroundColor: color,
+          fill: false,
+          tension: 0.1
+        };
+      });
+
+      this.lineChartDia = new Chart(this.lineCanvasDia.nativeElement, {
+        type: 'line',
+        data: {
+          labels: dias,
+          datasets: datasets
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: 'Histórico Ingresos vs Gastos del Mes'
+            }
           },
-          {
-            label: 'Gastos',
-            fill: false,
-            tension: 0.1,
-            backgroundColor: 'rgba(234,70,70,1)',
-            borderColor: 'rgba(234,70,70,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(234,70,70,1)',
-            pointBackgroundColor: '#fff',
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(234,70,70,1)',
-            pointHoverBorderColor: 'rgba(234,70,70,1)',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [75000, 89000, 90000, 11000, 26000, 35000, 10000, 60000, 78000, 80000, 10000, 45000],
-            spanGaps: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          scales: {
+            y: { beginAtZero: true }
           }
-        ]
-      }
+        }
+      });
     });
   }
 
+
+
   lineChartMethod() {
-    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
-      type: 'line',
-      data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'November', 'December'],
-        datasets: [
-          {
-            label: 'Ingresos',
-            fill: false,
-            tension: 0.1,
-            backgroundColor: 'rgba(0,255,187,1)',
-            borderColor: 'rgba(0,255,187,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(0,255,187,1)',
-            pointBackgroundColor: '#fff',
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(0,255,187,1)',
-            pointHoverBorderColor: 'rgba(0,255,187,1)',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [65000, 59000, 80000, 81000, 56000, 55000, 40000, 10000, 5000, 50000, 10000, 15000],
-            spanGaps: false,
+    this.svc.charLineMovimientos().subscribe(({ meses, datasets }) => {
+      this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+        type: 'line',
+        data: {
+          labels: meses,
+          datasets: datasets
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: true, position: 'top' },
+            datalabels: {
+              align: 'top',
+              anchor: 'end',
+              color: '#000',
+              font: { weight: 'bold', size: 11 },
+              formatter: (value: number) => value > 0 ? value.toLocaleString() : ''
+            }
           },
-          {
-            label: 'Gastos',
-            fill: false,
-            tension: 0.1,
-            backgroundColor: 'rgba(234,70,70,1)',
-            borderColor: 'rgba(234,70,70,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(234,70,70,1)',
-            pointBackgroundColor: '#fff',
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(234,70,70,1)',
-            pointHoverBorderColor: 'rgba(234,70,70,1)',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [75000, 89000, 90000, 11000, 26000, 35000, 10000, 60000, 78000, 80000, 10000, 45000],
-            spanGaps: false,
+          scales: {
+            y: { beginAtZero: true }
           }
-        ]
-      }
+        },
+        plugins: [ChartDataLabels]
+      });
     });
   }
+
 
 
 
