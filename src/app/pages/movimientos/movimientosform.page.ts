@@ -32,6 +32,7 @@ tipos = [
   { id: 4, label: 'CXP' },
   { id: 5, label: 'Ajuste' },
   { id: 6, label: 'Anulación' },
+  { id: 7, label: 'Pago Dividendo' }
 
 ];
 
@@ -39,7 +40,7 @@ conceptos = [
   { id: 1, label: 'NA' },
   { id: 2, label: 'Cuenta 50K' },
   { id: 3, label: 'Cuenta 100K' },
-  { id: 4, label: 'Reset' }, 
+  { id: 4, label: 'Reset Sim' }, 
   { id: 5, label: 'Retiro' },  
   { id: 6, label: 'Aporte Socio' },
   { id: 7, label: 'Fee Activación 50K' },
@@ -52,7 +53,11 @@ conceptos = [
   { id: 14, label: 'Comisión' },
   { id: 15, label: 'Agente IA' },
   { id: 16, label: 'Cuenta 25K' },
-  { id: 17, label: 'Fee Activación 25K' }
+  { id: 17, label: 'Fee Activación 25K' },
+  { id: 18, label: 'Reset Live Sim' },
+  { id: 19, label: 'Salario' },
+  { id: 20, label: 'Dividendo Mensual' },
+  { id: 21, label: 'Dividendo Anual' }
 
 ];
 
@@ -68,7 +73,9 @@ empresas = [
   { value: 'ELT', label: 'Elite Trader' },
   { value: 'BUL', label: 'Bulenox' },
   { value: 'APX', label: 'Apex' },
-  { value: 'WBI', label: 'Walbi' }
+  { value: 'WBI', label: 'Walbi' },
+  { value: 'COL', label: 'Colaborador' },
+  { value: 'INV', label: 'Inversionista' }
 
 ];
 
