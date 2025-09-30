@@ -25,3 +25,10 @@
 #container a {
   text-decoration: none;
 }
+
+.chart-canvas {
+  width: 100% !important;
+  height: 300px !important;  // ✅ Ajusta a 300px o lo que prefieras
+  display: block;
+}
+

@@ -1,40 +1,116 @@
-<!-- src/app/pages/movimientos/movimientos-list.page.html -->
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Movimientos</ion-title>
-   
   </ion-toolbar>
+
+  <!-- Segmento con iconos -->
+  <ion-segment [(ngModel)]="tipoSeleccionado" (ionChange)="cambiarSlide()">
+
+    <ion-segment-button value="Ingreso">
+      <ion-icon name="arrow-down-circle-outline" color="success"></ion-icon>
+      <ion-label>Ingresos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Gasto">
+      <ion-icon name="arrow-up-circle-outline" color="danger"></ion-icon>
+      <ion-label>Gastos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Otros">
+      <ion-icon name="albums-outline"></ion-icon>
+      <ion-label>Otros</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
+
+<!-- ✅ AHORA EL CONTENIDO VA AQUÍ -->
 <ion-content>
-  <ion-list *ngIf="movimientos$ | async as movimientos">
-    <ion-item *ngFor="let m of movimientos">
-      <ion-label>
-        <h3>{{ m.Numero }} - {{ m.FechaMovimiento }} </h3>     
-        <p> {{ m.Concepto }} - {{ m.Empresa }} </p>
-        <p><strong> {{ m.Tipo }} : {{ m.Total || m.Valor | number:'1.2-2' }} - {{ m.Moneda }} </strong></p>
-      </ion-label>
 
-      <ion-button fill="clear" slot="end" (click)="editar(m.id)">
-        <ion-icon name="create-outline" size="large" ></ion-icon>
-      </ion-button>
-      <ion-button fill="clear" slot="end" color="danger" (click)="eliminar(m.id)">
-        <ion-icon name="trash-outline" size="large"  ></ion-icon>
-      </ion-button>
+  <!-- Buscador -->
+  <ion-searchbar 
+    [(ngModel)]="terminoBusqueda" 
+    placeholder="Buscar..." 
+    debounce="300" 
+    (ionInput)="onBuscar()">
+  </ion-searchbar>
 
-    </ion-item>
-  </ion-list>
+  <!-- Swiper -->
+  <swiper-container 
+    #slides 
+    (slidechange)="onSwipeChange()" 
+    space-between="10" 
+    speed="250"
+    [autoHeight]="true">
+    
+    <swiper-slide>
+      <div style="min-height: 100%;">
+        <ng-container *ngTemplateOutlet="lista; context:{tipo:'Ingreso'}"></ng-container>
+      </div>
+    </swiper-slide>
+    
+    <swiper-slide>
+      <div style="min-height: 100%;">
+        <ng-container *ngTemplateOutlet="lista; context:{tipo:'Gasto'}"></ng-container>
+      </div>
+    </swiper-slide>
+    
+    <swiper-slide>
+      <div style="min-height: 100%;">
+        <ng-container *ngTemplateOutlet="lista; context:{tipo:'Otros'}"></ng-container>
+      </div>
+    </swiper-slide>
 
-<!-- Botón flotante -->
+  </swiper-container>
+
+  <!-- Template lista con swipe y botones -->
+  <ng-template #lista>
+    <ion-list *ngIf="movimientos$ | async as movimientos" style="padding-bottom: 80px;">
+      <ion-item-sliding *ngFor="let m of movimientos | filtroPorTipo:tipoSeleccionado | filtroGlobal:terminoBusqueda">
+
+        <ion-item>
+          <ion-label>
+            <h3>{{ m.Numero }} - {{ m.FechaMovimiento }}</h3>
+            <p>{{ m.Concepto }} - {{ m.Empresa }}</p>
+            <p><strong>{{ m.Tipo }} : {{ m.Total || m.Valor | number:'1.2-2' }} - {{ m.Moneda }}</strong></p>
+          </ion-label>
+
+          <!-- Botones visibles -->
+          <ion-button fill="clear" slot="end" (click)="editar(m.id)">
+            <ion-icon name="create-outline" size="large"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" slot="end" color="danger" (click)="eliminar(m.id)">
+            <ion-icon name="trash-outline" size="large"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <!-- Acción al deslizar hacia la izquierda (start) -->
+        <ion-item-options side="start">
+          <ion-item-option color="success" (click)="editar(m.id)">
+            <ion-icon name="create-outline"></ion-icon>
+            Editar
+          </ion-item-option>
+        </ion-item-options>
+
+        <!-- Acción al deslizar hacia la derecha (end) -->
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="eliminar(m.id)">
+            <ion-icon name="trash-outline"></ion-icon>
+            Eliminar
+          </ion-item-option>
+        </ion-item-options>
+
+      </ion-item-sliding>
+    </ion-list>
+  </ng-template>
+
+  <!-- Botón flotante -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="success" (click)="irCrear()">
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 
 </ion-content>
 

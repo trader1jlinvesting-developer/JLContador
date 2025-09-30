@@ -6,3 +6,8 @@ ion-item ion-label {
 
 
 
+swiper-slide {
+  height: calc(100vh - 150px); // Ajusta según tu header
+  overflow-y: auto;
+  display: block;
+}

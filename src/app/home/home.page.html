@@ -10,14 +10,41 @@
 
 <ion-content>
 
- <ion-card>
-      <ion-card-header>
-        Historico Movimientos Por Mes
-      </ion-card-header>
-      <ion-card-content>
-        <canvas #lineCanvas style="position: relative; height:20vh; width:40vw"></canvas>
-      </ion-card-content>
-    </ion-card>
+
+  <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>Mes</ion-label>
+          <ion-select [(ngModel)]="filtroMes" (ionChange)="aplicarFiltros()">
+            <ion-select-option *ngFor="let m of mesesLista" [value]="m.valor">
+              {{ m.nombre }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>Año</ion-label>
+          <ion-select [(ngModel)]="filtroAnio" (ionChange)="aplicarFiltros()">
+            <ion-select-option *ngFor="let a of aniosLista" [value]="a">
+              {{ a }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card>
+    <ion-card-header>
+      Historico Movimientos Por Mes
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #lineCanvas class="chart-canvas"></canvas>
+    </ion-card-content>
+  </ion-card>
 
 
   <ion-grid>
@@ -33,7 +60,7 @@
     </ion-row>
   </ion-grid>
 
- 
+
 
   <div class="ion-padding">
     <ion-card>
@@ -41,7 +68,7 @@
         Movimientos Del Mensual
       </ion-card-header>
       <ion-card-content>
-        <canvas #barCanvas style="position: relative; height:20vh; width:40vw"></canvas>
+         <canvas #barCanvas class="chart-canvas"></canvas>
       </ion-card-content>
     </ion-card>
 
@@ -50,15 +77,11 @@
         Historico Movimientos Del Mes
       </ion-card-header>
       <ion-card-content>
-        <canvas #lineCanvasDia style="position: relative; height:20vh; width:40vw"></canvas>
+         <canvas #lineCanvasDia class="chart-canvas"></canvas>
       </ion-card-content>
     </ion-card>
 
-  
-
   </div>
-
-
 
 
 </ion-content>
