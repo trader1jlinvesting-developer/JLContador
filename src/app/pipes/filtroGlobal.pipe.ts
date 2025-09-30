@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Movimiento } from '../models/movimiento.model';
+import { Operativa } from '../models/operativas.model';
 
 @Pipe({
   name: 'filtroGlobal',
@@ -22,4 +23,6 @@ export class FiltroGlobalPipe implements PipeTransform {
       (m.Moneda?.toLowerCase().includes(termino))
     );
   }
+
+  
 }

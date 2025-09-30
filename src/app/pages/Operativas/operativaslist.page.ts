@@ -6,16 +6,22 @@ import { RouterModule, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { OperativasService } from 'src/app/services/operativas.service';
 import { Operativa } from 'src/app/models/operativas.model';
+import { FiltroGlobalOperativaPipe } from "../../pipes/filtro-globaloperativa.pipe";
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-operativas-list',
   standalone: true,
-  imports: [CommonModule, IonicModule, RouterModule],
+  imports: [CommonModule, IonicModule, RouterModule, FiltroGlobalOperativaPipe,FormsModule],
   templateUrl: './operativaslist.page.html',
   styleUrls: ['./operativaslist.page.scss'],
 })
 export class OperativasListPage implements OnInit {
   operativas$!: Observable<Operativa[]>;
+ operativasFiltradas: any[] = [];  // Lista filtrada
+  searchTerm: string = '';
+
 
   constructor(
     private svc: OperativasService,
@@ -28,6 +34,8 @@ export class OperativasListPage implements OnInit {
     // observamos la colección con async pipe en el template
     this.operativas$ = this.svc.obtenerOperativas();
   }
+
+  
 
   irCrear() {
     this.router.navigate(['/operativas/create']);
