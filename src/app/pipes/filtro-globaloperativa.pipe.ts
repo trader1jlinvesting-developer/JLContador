@@ -15,7 +15,7 @@ export class FiltroGlobalOperativaPipe implements PipeTransform {
 
     return operativas.filter(o =>
       (o.NumOperativa?.toString().toLowerCase().includes(term)) ||
-      (o.Fecha ? new Date(o.Fecha).toLocaleString().toLowerCase().includes(term) : false) ||
+      (o.Fecha?.toString().toLowerCase().includes(term)) ||
       (o.BalanceActual?.toString().toLowerCase().includes(term)) ||
       (o.NumCuenta?.toLowerCase().includes(term)) ||
       (o.Setup?.toLowerCase().includes(term)) ||
