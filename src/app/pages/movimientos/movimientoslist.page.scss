@@ -1,0 +1,15 @@
+ion-content {
+  --overflow: hidden; /* Elimina scroll de ion-content */
+}
+
+swiper-container {
+  height: 100%;
+  display: block;
+}
+
+swiper-slide {
+  display: block;
+  height: 100%;
+  overflow-y: auto; /* Solo el slide scrollea */
+  -webkit-overflow-scrolling: touch;
+}

@@ -1,71 +1,81 @@
-
 <ion-menu side="start" menuId="menuPrincipal" contentId="main">
   <ion-header>
-    <ion-toolbar color="warning" >
+    <ion-toolbar color="warning">
       <ion-title>Menu Principal</ion-title>
     </ion-toolbar>
   </ion-header>
+
   <ion-content class="ion-padding">
- 
-    <ion-list [inset]="true">
+    <ion-list inset="true">
 
-    <ion-item [button]="true" routerLink="/home"   >
-      <ion-icon  slot="start" ></ion-icon>
-      <ion-label>Inicio</ion-label>      
-    </ion-item>
-           
-    <ion-item [button]="true"   >
-      <ion-icon color="danger" slot="start" name="list-circle" size="large"></ion-icon>
-      <ion-label>Cuentas</ion-label>
-      <ion-note slot="end">1</ion-note>
-    </ion-item>
+      <ion-menu-toggle auto-hide="true">
+        <ion-item button routerLink="/home">
+          <ion-icon slot="start"></ion-icon>
+          <ion-label>Inicio</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
 
-    <ion-item [button]="true"  routerLink="/movimientos"  >
-      <ion-icon color="success" slot="start" name="list-circle" size="large"></ion-icon>
-      <ion-label>Movimientos</ion-label>
-      <ion-note slot="end">2</ion-note>
-    </ion-item>
+      <ion-menu-toggle auto-hide="true">
+        <ion-item button routerLink="/cuentas">
+          <ion-icon color="danger" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-label>Cuentas</ion-label>
+          <ion-note slot="end">1</ion-note>
+        </ion-item>
+      </ion-menu-toggle>
 
-    <ion-item [button]="true" routerLink="/operativas" >
-      <ion-icon color="tertiary" slot="start" name="list-circle" size="large"></ion-icon>
-      <ion-label>Operativas</ion-label>
-      <ion-note slot="end">3</ion-note>
-    </ion-item>
-    
+      <ion-menu-toggle auto-hide="true">
+        <ion-item button routerLink="/movimientos">
+          <ion-icon color="success" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-label>Movimientos</ion-label>
+          <ion-note slot="end">2</ion-note>
+        </ion-item>
+      </ion-menu-toggle>
 
-    <ion-item [button]="true">
-      <ion-icon color="warning" slot="start" name="list-circle" size="large"></ion-icon>
-      <ion-label>Maestros</ion-label>
-      <ion-note slot="end">4</ion-note>
-    </ion-item>
+      <ion-menu-toggle auto-hide="true">
+        <ion-item button routerLink="/operativas">
+          <ion-icon color="tertiary" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-label>Operativas</ion-label>
+          <ion-note slot="end">3</ion-note>
+        </ion-item>
+      </ion-menu-toggle>
 
-      <ion-item [button]="true">
-      <ion-icon color="warning" slot="start" name="list-circle" size="large"></ion-icon>
-      <ion-label>Clientes</ion-label>
-      <ion-note slot="end"></ion-note>
-    </ion-item>
+      <ion-menu-toggle auto-hide="true">
+        <ion-item button routerLink="/maestros">
+          <ion-icon color="warning" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-label>Maestros</ion-label>
+          <ion-note slot="end">4</ion-note>
+        </ion-item>
+      </ion-menu-toggle>
 
-     <ion-item [button]="true">
-      <ion-icon color="warning" slot="start" name="list-circle" size="large"></ion-icon>
-      <ion-label>Empresas Fond</ion-label>
-      <ion-note slot="end"></ion-note>
-    </ion-item>
+      <ion-menu-toggle auto-hide="true">
+        <ion-item button routerLink="/clientes">
+          <ion-icon color="warning" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-label>Clientes</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
 
-     <ion-item [button]="true">
-      <ion-icon color="warning" slot="start" name="list-circle" size="large"></ion-icon>
-      <ion-label>CuentasXEmp.</ion-label>
-      <ion-note slot="end"></ion-note>
-    </ion-item>
-    
-    <br>
-    <ion-item [button]="true" routerLink="/login"   >
-      <!-- <ion-icon  slot="start" ></ion-icon> -->
-      <ion-label>Salir</ion-label>      
-    </ion-item>
+      <ion-menu-toggle auto-hide="true">
+        <ion-item button routerLink="/empresas-fond">
+          <ion-icon color="warning" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-label>Empresas Fond</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
 
-  </ion-list>
+      <ion-menu-toggle auto-hide="true">
+        <ion-item button routerLink="/cuentasxemp">
+          <ion-icon color="warning" slot="start" name="list-circle" size="large"></ion-icon>
+          <ion-label>CuentasXEmp.</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
 
+      <br>
+
+      <ion-menu-toggle auto-hide="true">
+        <ion-item button routerLink="/login">
+          <ion-label>Salir</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+    </ion-list>
   </ion-content>
 </ion-menu>
-
-

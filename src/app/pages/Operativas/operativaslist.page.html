@@ -9,39 +9,16 @@
 </ion-header>
 
 <ion-content >
-  <!-- <ng-container *ngIf="operativas$ | async as operativas; else noData">
-    <ion-list>
-      <ion-item-sliding *ngFor="let o of operativas">
-        <ion-item>
-          <ion-label>
-            <h2>{{ o.NumOperativa || o.NumOperativa || 'N/A' }}</h2>
-            <p>Fecha: {{ formatFecha(o.Fecha || o.Fecha) }}</p>
-            <p>Activo: {{ o.Activo || o.Activo }}</p>
-            <p>Resultado: {{ o.Resultado || o.Resultado }}</p>
-            <p><strong>Balance:</strong> {{ o.BalanceActual || o.BalanceActual }}</p>
-          </ion-label>
 
-          <ion-buttons slot="end">
-            <ion-button fill="clear" (click)="editar(o.id ?? o['id'])">
-              <ion-icon name="create-outline"></ion-icon>
-            </ion-button>
-            <ion-button fill="clear" color="danger" (click)="confirmarEliminar(o.id ?? o['id'])">
-              <ion-icon name="trash-outline"></ion-icon>
-            </ion-button>
-          </ion-buttons>
-        </ion-item>
+    <!-- Searchbar -->
+ <ion-searchbar
+  [(ngModel)]="searchTerm"
+  placeholder="Buscar operativas...">
+</ion-searchbar>
 
-        <ion-item-options side="end">
-          <ion-item-option (click)="editar(o.id ?? o['id'])">Editar</ion-item-option>
-          <ion-item-option color="danger" (click)="confirmarEliminar(o.id ?? o['id'])">Eliminar</ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
-  </ng-container> -->
-
-
+  
   <ion-list *ngIf="operativas$ | async as operativas; else noData" >
-    <ion-item *ngFor="let o of operativas">
+    <ion-item *ngFor="let o of operativas$ |async | filtroGlobalOperativa:searchTerm">
       <ion-label>
         <h3>#{{ o.NumOperativa }} - Fecha: {{ o.Fecha }} / Balance: {{ o.BalanceActual }} </h3>     
         <p> {{ o.NumCuenta }} : {{ o.Setup }} / {{ o.Resultado }} / {{ o.Valor }} </p>
