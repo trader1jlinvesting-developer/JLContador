@@ -41,9 +41,10 @@ activos = [
   { id: 1, label: 'NQ' },
   { id: 2, label: 'BTC' },
   { id: 3, label: 'MNQ' },
-  { id: 4, label: 'IA' } ,
-  { id: 3, label: 'IA-SALO' },
-  { id: 4, label: 'IA-CARLOS' } 
+  { id: 4, label: 'IA-CARLOS' } ,  
+  { id: 5, label: 'IA-SALO' },
+  { id: 6, label: 'IA' } 
+  
 
 ];
 
