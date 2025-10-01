@@ -31,7 +31,8 @@ fases = [
   { id: 0, label: 'NA' },
   { id: 1, label: '1' },
   { id: 2, label: '2' },
-  { id: 3, label: '3' } 
+  { id: 3, label: '3' } ,
+  { id: 4, label: 'Testing' } 
 
 ];
 
