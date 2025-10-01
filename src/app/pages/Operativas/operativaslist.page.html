@@ -1,6 +1,6 @@
 <!-- src/app/pages/operativas/operativaslist.page.html -->
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar  color="tertiary"  >
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -23,6 +23,7 @@
         <h3>#{{ o.NumOperativa }} - Fecha: {{ o.Fecha }} / Balance: {{ o.BalanceActual }} </h3>     
         <p> {{ o.NumCuenta }} : {{ o.Setup }} / {{ o.Resultado }} / {{ o.Valor }} </p>
         <p> Comentario: {{ o.Comentario }} </p>
+        <p> Gestor: {{ o.IdTrader }} </p>
       </ion-label>
 
         <ion-buttons slot="end">

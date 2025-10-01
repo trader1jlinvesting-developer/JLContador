@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar  color="success" >
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -74,6 +74,8 @@
             <h3>{{ m.Numero }} - {{ m.FechaMovimiento }}</h3>
             <p>{{ m.Concepto }} - {{ m.Empresa }}</p>
             <p><strong>{{ m.Tipo }} : {{ m.Total || m.Valor | number:'1.2-2' }} - {{ m.Moneda }}</strong></p>
+            <p>Observación: {{ m.Nota }}</p>
+            <p>Registrado por: {{ m.Responsable }}</p>
           </ion-label>
 
           <!-- Botones visibles -->

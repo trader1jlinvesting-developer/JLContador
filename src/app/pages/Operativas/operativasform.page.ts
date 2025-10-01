@@ -63,7 +63,11 @@ setups = [
   { id: 13, label: 'A1-A2' },
   { id: 14, label: 'A2-A3' },
   { id: 15, label: 'A3-A4' },
-   { id: 16, label: 'A4-A+' }
+  { id: 16, label: 'A4-A+' },
+  { id: 17, label: 'N1' },
+  { id: 18, label: 'N2' },
+  { id: 19, label: 'N3' },
+  { id: 20, label: 'N4' }
   
 ];
 
@@ -86,7 +90,9 @@ estrategias = [
   { id: 2, label: 'JLProfessional' },
   { id: 3, label: 'JLBasic' } ,
   { id: 4, label: 'JLInvertida' } ,
-  { id: 5, label: 'Otra' }  
+  { id: 5, label: 'Otra' } ,
+  { id: 6, label: 'Niveles' } ,
+  { id: 7, label: 'A' } 
 
 ];
 
