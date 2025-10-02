@@ -26,10 +26,10 @@
         <p> Gestor: {{ o.IdTrader }} </p>
       </ion-label>
 
-        <ion-buttons slot="end">
-            <!-- <ion-button fill="clear" (click)="editar(o.id ?? o['id'])">
+        <!-- <ion-buttons slot="end">
+            <ion-button fill="clear" (click)="editar(o.id ?? o['id'])">
               <ion-icon name="create-outline"></ion-icon>
-            </ion-button> -->
+            </ion-button>
             <ion-button fill="clear" color="danger" (click)="confirmarEliminar(o.id ?? o['id'])">
               <ion-icon name="trash-outline" size="large" ></ion-icon>
             </ion-button>
@@ -38,7 +38,7 @@
         <ion-item-options side="end">
           <ion-item-option (click)="editar(o.id ?? o['id'])">Editar</ion-item-option>
           <ion-item-option color="danger" (click)="confirmarEliminar(o.id ?? o['id'])">Eliminar</ion-item-option>
-        </ion-item-options>
+        </ion-item-options> -->
 
       <!-- <ion-button fill="clear" slot="end" (click)="editar(m.id)">
         <ion-icon name="create-outline" size="large" ></ion-icon>

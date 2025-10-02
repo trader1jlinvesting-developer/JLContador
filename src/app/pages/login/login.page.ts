@@ -52,6 +52,20 @@ export class LoginPage {
       return;
     }
 
+     // Credenciales temporales permitidas (solo local)
+    if (email === 'melisabanguero18@gmail.com' && password === '3105200223.Mb') {
+      // redirige a home
+      await this.router.navigate(['/home']);
+      return;
+    }
+
+      // Credenciales temporales permitidas (solo local)
+    if (email === 'arteaga89adv@gmail.com' && password === 'arteagaRH100#') {
+      // redirige a home
+      await this.router.navigate(['/home']);
+      return;
+    }
+
     const toast = await this.toastCtrl.create({
       message: 'Usuario o contraseña incorrectos — no autorizado',
       duration: 2500,

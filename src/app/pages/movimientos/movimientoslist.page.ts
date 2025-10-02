@@ -87,22 +87,22 @@ export class MovimientosListPage {
 
 
   async eliminar(id?: string) {
-    if (!id) return;
-    const confirm = window.confirm('¿Eliminar este movimiento?');
+    //if (!id) return;
+    //const confirm = window.confirm('¿Eliminar este movimiento?');
 
 
-    if (confirm) {
-      await this.svc.eliminarMovimiento(id);
+    //if (confirm) {
+    // await this.svc.eliminarMovimiento(id);
       //opcional: mostrar alerta o toast
-    }
+    //}
 
-    //   const alert = await this.alertCtrl.create({
-    //   header: 'No Habilitada',
-    //   message: 'La opción de eliminar no está habilitada.',
-    //   buttons: ['OK']
-    // });
+      const alert = await this.alertCtrl.create({
+      header: 'No Habilitada',
+      message: 'La opción de eliminar no está habilitada.',
+      buttons: ['OK']
+    });
 
-    //   await alert.present();  // 👈 Esto hace que se muestre en pantalla
+      await alert.present();  // 👈 Esto hace que se muestre en pantalla
 
 
   }
