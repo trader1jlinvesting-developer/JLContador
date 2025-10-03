@@ -19,7 +19,8 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class LoginPage {
   loginForm: FormGroup;
-
+  email: string = "";
+  password: string = "";
   constructor(
     private fb: FormBuilder,
     private router: Router,
