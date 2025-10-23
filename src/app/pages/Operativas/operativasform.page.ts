@@ -69,7 +69,13 @@ setups = [
   { id: 17, label: 'N1' },
   { id: 18, label: 'N2' },
   { id: 19, label: 'N3' },
-  { id: 20, label: 'N4' }
+  { id: 20, label: 'N4' },
+  //Setupd de amarillas y confirmación con rombos de la estartegia J
+  { id: 21, label: 'A-R 1' },
+  { id: 22, label: 'A-R 2' },
+  { id: 23, label: 'A-R 3' } ,
+  { id: 24, label: 'A-R 4' },
+  { id: 25, label: 'A-R +' },
   
 ];
 
@@ -94,7 +100,9 @@ estrategias = [
   { id: 4, label: 'JLInvertida' } ,
   { id: 5, label: 'Otra' } ,
   { id: 6, label: 'Niveles' } ,
-  { id: 7, label: 'A' } 
+  { id: 7, label: 'A' } ,
+  //Amarilla con Rombos
+  { id: 8, label: 'A-R' } 
 
 ];
 
