@@ -50,32 +50,32 @@ activos = [
 
 setups = [
   { id: 0, label: 'NA' },
-  { id: 1, label: 'A1' },
-  { id: 2, label: 'A2' },
-  { id: 3, label: 'A3' } ,
-  { id: 4, label: 'A4' },
+  { id: 1, label: 'A(A1)' },
+  { id: 2, label: 'A(A2)' },
+  { id: 3, label: 'A(A3)' } ,
+  { id: 4, label: 'A(A4)' },
   { id: 5, label: 'A+' },
-  { id: 6, label: 'R1' },
-  { id: 7, label: 'R2' } ,
+  { id: 6, label: 'R(R1)' },
+  { id: 7, label: 'R(R2)' } ,
   { id: 8, label: 'R+' } ,
-  { id: 9, label: 'J1' },
-  { id: 10, label: 'J2' },
-  { id: 11, label: 'J3' } ,
-  { id: 12, label: 'J12' },
-  { id: 13, label: 'A1-A2' },
-  { id: 14, label: 'A2-A3' },
-  { id: 15, label: 'A3-A4' },
-  { id: 16, label: 'A4-A+' },
-  { id: 17, label: 'N1' },
-  { id: 18, label: 'N2' },
-  { id: 19, label: 'N3' },
-  { id: 20, label: 'N4' },
+  { id: 9, label: 'J(J1)' },
+  { id: 10, label: 'J(J2)' },
+  { id: 11, label: 'J(J3)' } ,
+  { id: 12, label: 'J(J12)' },
+  { id: 13, label: 'A(A1-A2)' },
+  { id: 14, label: 'A(A2-A3)' },
+  { id: 15, label: 'A(A3-A4)' },
+  { id: 16, label: 'A(A4-A+)' },
+  { id: 17, label: 'Niveles(N1)' },
+  { id: 18, label: 'Niveles(N2)' },
+  { id: 19, label: 'Niveles(N3)' },
+  { id: 20, label: 'Niveles(N4)' },
   //Setupd de amarillas y confirmación con rombos de la estartegia J
-  { id: 21, label: 'A-R 1' },
-  { id: 22, label: 'A-R 2' },
-  { id: 23, label: 'A-R 3' } ,
-  { id: 24, label: 'A-R 4' },
-  { id: 25, label: 'A-R +' },
+  { id: 21, label: 'A-R(AR1)' },
+  { id: 22, label: 'A-R(AR2)' },
+  { id: 23, label: 'A-R(AR3)' } ,
+  { id: 24, label: 'A-R4(AR4)' },
+  { id: 25, label: 'A-R(AR+)' },
   
 ];
 
@@ -95,14 +95,7 @@ riesgos = [
 estrategias = [
   { id: 0, label: 'NA' },
   { id: 1, label: 'JBase' },
-  { id: 2, label: 'JLProfessional' },
-  { id: 3, label: 'JLBasic' } ,
-  { id: 4, label: 'JLInvertida' } ,
-  { id: 5, label: 'Otra' } ,
-  { id: 6, label: 'Niveles' } ,
-  { id: 7, label: 'A' } ,
-  //Amarilla con Rombos
-  { id: 8, label: 'A-R' } 
+  { id: 2, label: 'JLProfessional' }  
 
 ];
 
