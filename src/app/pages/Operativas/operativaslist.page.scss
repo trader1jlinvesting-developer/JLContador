@@ -1,0 +1,60 @@
+.fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Color tertiary (tono morado tipo Ionic) */
+.fab-tertiary {
+  background-color: #7044ff; /* equivalente a Ionic 'tertiary' */
+}
+
+.fab:hover {
+  transform: scale(1.08);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.searchbar {
+  position: relative;
+  width: 100%;
+  padding: 8px 16px;
+  box-sizing: border-box;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 40px 10px 14px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  background-color: #f8f8f8;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: #3880ff; /* Color Ionic primario */
+  box-shadow: 0 0 5px rgba(56, 128, 255, 0.3);
+  background-color: #fff;
+}
+
+.search-icon {
+  position: absolute;
+  right: 26px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 18px;
+}
