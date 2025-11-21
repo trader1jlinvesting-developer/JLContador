@@ -5,6 +5,7 @@ import { ActivatedRoute,   RouterModule } from '@angular/router';
 import { OperativasService } from 'src/app/services/operativas.service';
 import { Operativa } from '../../models/operativas.model';
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -126,7 +127,8 @@ resultados = [
     private operativasService: OperativasService,
     private route: ActivatedRoute,
     private navCtrl: NavController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -205,6 +207,10 @@ resultados = [
         await this.operativasService.actualizarOperativa(this.IdOperativa, datos);
         this.mostrarToast('Operativa actualizada ✅');
       } else {
+        
+         console.log("data:");
+         console.log(data);
+
         // Crear
         await this.operativasService.agregarOperativa(datos);
         this.mostrarToast('Operativa creada ✅');
@@ -251,6 +257,10 @@ onFaseChange(event: any) {
 //   const label = event.target.textContent.trim(); 
 //   this.operativaForm.patchValue({ Activo: text });
 // }
+
+goBack() {
+  this.location.back();
+}
 
 
 

@@ -1,5 +1,132 @@
-/* src/app/pages/movimientos/movimientos-form.page.scss */
-ion-item ion-label {
-  font-size: 16px;
-  
+/* Toolbar */
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  background:  #7044ff; /* terciary */
+  color: white;
+  z-index: 1000;
+}
+
+
+.toolbar-title {
+  margin: 0 auto;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.back-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Content wrapper */
+.content {
+  padding: 16px;
+}
+
+/* Input & select styling */
+.form-row,
+.grid-col {
+  margin-bottom: 16px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Grid */
+.grid-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.grid-col {
+  flex: 1;
+}
+
+.grid-col-5 {
+  flex: 0 0 40%;
+}
+
+.grid-col-7 {
+  flex: 0 0 60%;
+}
+
+/* Button replacement */
+.btn-block {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-tertiary {
+  background-color: #7044ff;
+  color: white;
+}
+
+.btn-tertiary:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+.custom-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: #3b49fa; /* color terciary */
+  color: white;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+}
+
+.page-content {
+  margin-top: 56px; /* igual al alto del header */
+  padding: 16px;
+  overflow: auto !important;
+}
+
+.scroll-content {
+  //overflow: auto !important;
+  //height: 100%;
+}
+
+ion-content {
+  --overflow: auto;
+}
+
+.operativaform-container {
+  max-width: 1003px;
+  margin: 0 auto;
+  padding: 20px;
+  overflow: auto !important;
+  //text-align: center;
 }

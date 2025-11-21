@@ -1,6 +1,6 @@
 #container {
   text-align: center;
-
+  width: 550px;
   position: absolute;
   left: 0;
   right: 0;
@@ -103,6 +103,13 @@ select {
   color: white;
 }
 
+.home-container {
+  max-width: 1003px;
+  margin: 0 auto;
+  padding: 20px;
+  overflow-x: auto;
+  //text-align: center;
+}
 
 
 

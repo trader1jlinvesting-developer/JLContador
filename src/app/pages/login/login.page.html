@@ -1,14 +1,17 @@
-<ion-content class="ion-padding">
+<div class="login-container">
 
-  <!-- Logo -->
+
+
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+
+
+      <!-- Logo -->
   <div class="logo-container">
     <img src="../../../assets/img/JLInvesting.jpg" alt="Logo Empresa" class="logo-empresa" />
   </div>
 
   <!-- Inputs -->
-
-
-  <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
 
   <p>Usuario / Email</p>
   <div class="input-wrapper">
@@ -26,18 +29,19 @@
     <button class="btn-login" type="submit">Iniciar sesión</button>
   </div>
 
-</form>
-
-
   <div class="ion-text-center ion-margin-top">
     <a (click)="irARegistro()">¿No tienes cuenta? Regístrate</a>
   </div>
+  <br>
 
+</form>
 
+<br>
+<br>
 
   <!-- Footer -->
   <div class="footer-derecha">
     Create by JLInvesting - 2024
   </div>
 
-</ion-content>
+</div>

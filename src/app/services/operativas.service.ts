@@ -31,6 +31,7 @@ export class OperativasService {
    * Convierte string | Date | undefined en Date
    */
   private parsearFecha(fecha: Date | string | undefined): Date {
+     console.log("Fecha 1: " + fecha);
     if (!fecha) return new Date();
 
     if (fecha instanceof Date) {
@@ -41,6 +42,8 @@ export class OperativasService {
     if (isNaN(parsed.getTime())) {
       throw new Error(`Fecha inválida: ${fecha}`);
     }
+
+    console.log("Fecha 2: " + parsed);
 
     return parsed;
   }
@@ -92,10 +95,13 @@ export class OperativasService {
   async agregarOperativa(o: Operativa) {
     const numero = await this.generarNumero();
 
+     console.log("data agregarOperativa:");
+     console.log(o);
+
     const op: WithFieldValue<DocumentData> = {
       ...o,
       NumOperativa: numero,
-      Fecha: this.parsearFecha(o.Fecha),
+      Fecha: this.parsearFecha(o.FechaRegistro),
       FechaRegistro: this.parsearFecha(o.FechaRegistro)
     };
 
@@ -129,6 +135,11 @@ export class OperativasService {
 
  // 🔹 Utilidad para formatear a DD/MM/YYYY (UI)
   private formatearFecha(fecha: any): string {
+
+
+    // console.log("Paso por formatear Fecha.");
+    // console.log("Fecha que entro:" + fecha );
+
     if (!fecha) return '';
     let d: Date;
 
@@ -145,6 +156,9 @@ export class OperativasService {
     const dia = String(d.getDate()).padStart(2, '0');
     const mes = String(d.getMonth() + 1).padStart(2, '0');
     const anio = d.getFullYear();
+
+    //  console.log("Fecha que salio:" + `${dia}/${mes}/${anio}` );
+
     return `${dia}/${mes}/${anio}`;
   }
 
