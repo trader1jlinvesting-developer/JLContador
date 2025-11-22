@@ -1,49 +1,41 @@
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
 
 <!-- src/app/pages/operativas/operativaslist.page.html -->
 <ion-header>
-  <ion-toolbar  color="tertiary"  >
+  <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Operativas</ion-title>   
+    <ion-title>Operativas</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content>
 
-    <!-- Searchbar -->
- <!-- <ion-searchbar
+  <!-- Searchbar -->
+  <!-- <ion-searchbar
   [(ngModel)]="searchTerm"
   placeholder="Buscar operativas...">
 </ion-searchbar> -->
 
-<!-- Searchbar HTML -->
-<div class="searchbar">
-  <input
-    type="text"
-    [(ngModel)]="searchTerm"
-    placeholder="Buscar operativas..."
-    class="search-input"
-  />
-  <i class="fa fa-search search-icon"></i>
-</div>
+  <!-- Searchbar HTML -->
+  <div class="searchbar">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar operativas..." class="search-input" />
+    <i class="fa fa-search search-icon"></i>
+  </div>
 
-  
-  <ion-list *ngIf="operativas$ | async as operativas; else noData" >
+
+  <ion-list *ngIf="operativas$ | async as operativas; else noData">
     <ion-item *ngFor="let o of operativas$ |async | filtroGlobalOperativa:searchTerm">
       <ion-label>
-        <h3>#{{ o.NumOperativa }} - Fecha: {{ o.Fecha }} / Balance: {{ o.BalanceActual }} </h3>     
+        <h3>#{{ o.NumOperativa }} - Fecha: {{ o.Fecha }} / Balance: {{ o.BalanceActual }} </h3>
         <p> {{ o.NumCuenta }} : {{ o.Setup }} / {{ o.Resultado }} / {{ o.Valor }} </p>
         <p> Comentario: {{ o.Comentario }} </p>
         <p> Gestor: {{ o.IdTrader }} </p>
       </ion-label>
 
-        <!-- <ion-buttons slot="end">
+      <!-- <ion-buttons slot="end">
             <ion-button fill="clear" (click)="editar(o.id ?? o['id'])">
               <ion-icon name="create-outline"></ion-icon>
             </ion-button>
@@ -78,9 +70,9 @@
   </ion-fab> -->
 
   <!-- Botón flotante -->
-<button class="fab fab-tertiary" (click)="irCrear()" title="Nuevo registro">
-  <i class="fa fa-plus"></i>
-</button>
+  <button class="fab fab-tertiary" (click)="irCrear()" title="Nuevo registro">
+    <i class="fa fa-plus"></i>
+  </button>
 
 
   <ng-template #noData>
@@ -89,4 +81,3 @@
     </ion-text>
   </ng-template>
 </ion-content>
-

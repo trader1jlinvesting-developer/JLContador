@@ -10,7 +10,7 @@ import {
 import { addIcons } from 'ionicons';
 import { chevronForward, listCircle } from 'ionicons/icons';
 import { MenuPrincipalComponent } from "./menu-principal/menu-principal.component";
-
+import { MenuController } from '@ionic/angular';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -21,4 +21,7 @@ export class AppComponent {
   constructor() {
     addIcons({ chevronForward, listCircle });
   }
+
+ 
+  
 }

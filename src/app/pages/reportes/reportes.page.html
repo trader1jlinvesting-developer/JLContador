@@ -1,0 +1,140 @@
+<!-- <ion-header>
+  <ion-toolbar color="success">
+    <ion-icon name="star" slot="start"></ion-icon>
+    <ion-buttons slot="start">
+      <ion-menu-button color="dark" autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>JLINVESTING</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<header class="app-header">
+  <div class="toolbar">
+    <div class="toolbar-start">
+      <!-- Ícono de estrella -->
+      <i class="fa fa-star icon-star"></i>
+
+      <!-- Botón de menú -->
+      <button class="menu-button" >
+        ☰
+      </button>
+    </div>
+
+    <!-- Título -->
+    <h1 class="toolbar-title">JLINVESTING</h1>
+  </div>
+</header>
+
+
+<div class="reportes-container">
+
+
+  <!-- <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>Mes</ion-label>
+          <ion-select [(ngModel)]="filtroMes" (ionChange)="aplicarFiltros()">
+            <ion-select-option *ngFor="let m of mesesLista" [value]="m.valor">
+              {{ m.nombre }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>Año</ion-label>
+          <ion-select [(ngModel)]="filtroAnio" (ionChange)="aplicarFiltros()">
+            <ion-select-option *ngFor="let a of aniosLista" [value]="a">
+              {{ a }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+<div class="filtros-container" style="padding: 16px;">
+  <div class="row">
+    <!-- Filtro Mes -->
+    <div class="col-6">
+      <label for="mesSelect">Mes</label>
+      <select
+        id="mesSelect"
+        [(ngModel)]="filtroMes"
+        (change)="aplicarFiltros()"
+        class="form-select"
+      >
+        <option *ngFor="let m of mesesLista" [value]="m.valor">
+          {{ m.nombre }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Filtro Año -->
+    <div class="col-6">
+      <label for="anioSelect">Año</label>
+      <select
+        id="anioSelect"
+        [(ngModel)]="filtroAnio"
+        (change)="aplicarFiltros()"
+        class="form-select"
+      >
+        <option *ngFor="let a of aniosLista" [value]="a">
+          {{ a }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="ion-padding">
+ 
+  <ion-card    >
+      <ion-card-header>
+        HISTORICO MOVIMIENTOS POR MES
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #lineCanvas style="position: relative; height:40vh; width:40vw"></canvas>
+      </ion-card-content>
+
+    <ion-grid  >
+    <ion-row   >
+      <ion-col   *ngFor="let item of totalesTipos">
+        <ion-card [style.backgroundColor]="coloresTipos[item.tipo]">
+          <ion-card-header>
+            <ion-card-title>$ {{ item.valor | number:'1.0-0' }}</ion-card-title>
+            <ion-card-subtitle>{{ item.tipo }} Mes</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+    </ion-card>
+  
+    <ion-card>
+      <ion-card-header>
+        BALANCE MES ACTUAL
+      </ion-card-header>
+      <ion-card-content>
+         <canvas #barCanvas class="chart-canvas"></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        MOVIMIENTOS MES ACTUAL
+      </ion-card-header>
+      <ion-card-content>
+         <canvas #lineCanvasDia class="chart-canvas"></canvas>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+
+
+
+</div>

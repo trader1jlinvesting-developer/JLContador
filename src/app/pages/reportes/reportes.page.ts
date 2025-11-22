@@ -1,23 +1,23 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { IonicModule , MenuController} from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import Chart from 'chart.js/auto';
-import { MovimientosService } from '../services/movimientos.service';
-import { AgrupadoMes } from '../models/agrupado-mes';
+import { MovimientosService } from '../../services/movimientos.service';
+import { AgrupadoMes } from '../../models/agrupado-mes';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { FormsModule } from '@angular/forms';
 
 Chart.register(ChartDataLabels);
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-reportes',
+  templateUrl: 'reportes.page.html',
+  styleUrls: ['reportes.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, RouterModule, FormsModule],
 })
 
-export class HomePage {
+export class ReportesPage {
 
   @ViewChild('barCanvas') barCanvas!: ElementRef;
   @ViewChild('lineCanvasDia') lineCanvasDia!: ElementRef;
@@ -55,7 +55,7 @@ export class HomePage {
   anioActual = new Date().getFullYear();
   aniosLista = Array.from({ length: this.anioActual - this.anioInicio + 1 }, (_, i) => this.anioInicio + i);
 
-  constructor(private svc: MovimientosService,private menu: MenuController) { }
+  constructor(private svc: MovimientosService,) { }
 
   ngOnInit() {
     this.aplicarFiltros();
@@ -70,9 +70,9 @@ export class HomePage {
   }
 
   aplicarFiltros() {
-    //this.barChartMethod(this.filtroMes, this.filtroAnio);
+    this.barChartMethod(this.filtroMes, this.filtroAnio);
     this.lineChartMethod(this.filtroAnio);   // este solo usa año completo
-    // this.lineChartDiaMethod(this.filtroMes, this.filtroAnio);
+    this.lineChartDiaMethod(this.filtroMes, this.filtroAnio);
   }
 
 
@@ -151,7 +151,7 @@ export class HomePage {
           },
           plugins: [ChartDataLabels]
         });
-        setTimeout(() => this.lineChart.resize(), 50);
+         setTimeout(() => this.lineChart.resize(), 50);
       }, 10);
     });
   }
@@ -195,7 +195,7 @@ export class HomePage {
             scales: { y: { beginAtZero: true } }
           }
         });
-        setTimeout(() => this.lineChart.resize(), 50);
+         setTimeout(() => this.lineChart.resize(), 50);
       }, 10);
     });
   }
@@ -227,30 +227,24 @@ export class HomePage {
             plugins: {
               legend: { display: true, position: 'top' },
               datalabels: {
-                display: false,  // 🔥 esta línea es suficiente
+                align: 'top',
+                anchor: 'end',
+                color: '#000',
+                font: { weight: 'bold', size: 11 },
+                formatter: (value: number) => value > 0 ? value.toLocaleString() : ''
               }
             },
-            scales: {
-              y: {
-                beginAtZero: true, ticks: {
-                  display: false   // 👈 QUITAR VALORES LATERALES
-                },
-              }
-            }
+            scales: { y: { beginAtZero: true } }
           },
           plugins: [ChartDataLabels]
         });
-        setTimeout(() => this.lineChart.resize(), 50);
+         setTimeout(() => this.lineChart.resize(), 50);
       }, 10);
     });
   }
 
 
-  
-openMenu() {
- console.log("ABRIENDO MENÚ"); // ← VERIFICA ESTO EN CONSOLA
-    this.menu.open('menuPrincipal');
-}
+
 
 
 }

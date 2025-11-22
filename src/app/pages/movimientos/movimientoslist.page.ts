@@ -38,6 +38,18 @@ export class MovimientosListPage {
     this.movimientos$ = this.svc.obtenerMovimientos();
   }
 
+ segmentClick(event: any) {
+  const value = event.target.closest('a').dataset.value;
+  this.tipoSeleccionado = value;
+
+  this.cambiarSlide();
+
+  const links = document.querySelectorAll('.nav-pills .nav-link');
+  links.forEach(link => link.classList.remove('active'));
+
+  event.target.closest('a').classList.add('active');
+}
+
   irCrear() {
     this.router.navigate(['/movimientos/create']);
   }
