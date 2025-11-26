@@ -58,3 +58,64 @@
   color: #888;
   font-size: 18px;
 }
+.app-header {
+  width: 100%;
+  background-color: #28a745; /* similar a Ionic color="success" */
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+}
+
+.toolbar-start {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-star {
+  font-size: 22px;
+  color: white;
+}
+
+.menu-button {
+  font-size: 22px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.toolbar-title {
+  flex-grow: 1;
+  text-align: center;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+}
+
+.menu-item {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.menu-item:hover {
+  background: #f1f1f1;
+}
+
+.menu-item i {
+  width: 28px;
+  text-align: center;
+}
+
+.offcanvas-body .list-group-item {
+  border: none;
+  padding: 14px 20px;
+  font-size: 1.05rem;
+}
