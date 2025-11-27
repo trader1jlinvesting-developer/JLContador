@@ -1,6 +1,6 @@
 <!-- src/app/pages/movimientos/movimientos-form.page.html -->
 <ion-header>
-  <ion-toolbar color="success">
+  <ion-toolbar  color="success" >
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/movimientos"></ion-back-button>
     </ion-buttons>
@@ -8,107 +8,151 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- Toolbar -->
-<header class="toolbar toolbar-tertiary">
-  <button class="back-btn" (click)="goBack()">
-    ⬅ Volver
-  </button>
+    <ion-content [fullscreen]="true" class="ion-padding">
 
-  <h1 class="toolbar-title">Registrar Movimiento</h1>
-</header>
-
-
-<ion-content [fullscreen]="true" class="ion-padding">
-
-  <div class="form-container">
+       <div class="movimientosform-container" >
 
     <form [formGroup]="form" (ngSubmit)="guardar()">
+    
+    <ion-item  >
+    <ion-label>Fecha: </ion-label>
+    <ion-datetime-button datetime="FechaMovimiento"  ></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+            <ion-datetime
+                id="FechaMovimiento"
+                presentation="date"
+                (ionChange)="form.get('FechaMovimiento')?.setValue($event.detail.value)">
+            </ion-datetime>
+            </ng-template>
+        </ion-modal>
+    </ion-item>
 
-      <!-- Num Cuenta -->
-      <div class="form-row">
-        <input type="text" formControlName="NumeroCuenta" placeholder="Num Cuenta" />
-      </div>
+ <!-- Tipo Movimiento -->
+<ion-item>
+  <ion-select
+    formControlName="IdTipo"
+    label="Tipo Movimiento"
+    interface="popover"
+    placeholder="Seleccione"
+    (ionChange)="onTipoChange($event)" >
+    <ion-select-option *ngFor="let tipo of tipos" [value]="tipo.id">
+    {{ tipo.label }}
+  </ion-select-option>
+  </ion-select>
+</ion-item>
 
-      <div class="grid-row">
-        <div class="grid-col-6">
-          <label>Fecha Movimiento:</label>
-          <input type="date" formControlName="FechaMovimiento"
-            (change)="form.get('FechaMovimiento')?.setValue($event.target.value)" />
-        </div>
-        <div class="grid-col-6">
-          <label for="IdTipo">Tipo Movimiento:</label>
-          <select formControlName="IdTipo">
-            <option *ngFor="let tipo of tipos" [value]="tipo.id">
-              {{ tipo.label}}
-            </option>
-          </select>
-        </div>
-      </div>
+ <!-- Concepto -->
+<ion-item>
+  <ion-select
+    formControlName="IdConcepto"
+    label="Concepto"
+    interface="popover"
+    placeholder="Seleccione"
+    (ionChange)="onConceptoChange($event)"
+  >
+    <ion-select-option *ngFor="let c of conceptos" [value]="c.id">
+      {{ c.label }}
+    </ion-select-option>
+  </ion-select>
+</ion-item>
 
-      <div class="grid-row">
-        <div class="grid-col-6">
-          <label for="IdConcepto">Concepto:</label>
-          <select formControlName="IdConcepto">
-            <option *ngFor="let c of conceptos" [value]="c.id">
-              {{ c.label}}
-            </option>
-          </select>
-        </div>
-        <div class="grid-col-6">
-          <label for="Moneda">Moneda:</label>
-          <select formControlName="Moneda">
-            <option *ngFor="let m of monedas" [value]="m.value">
-              {{ m.label}}
-            </option>
-          </select>
-        </div>
-      </div>
+ <!-- Moneda (guarda directamente el texto en el form) -->
+<ion-item>
+  <ion-select
+    formControlName="Moneda"
+    label="Moneda"
+    interface="popover"
+    placeholder="Seleccione"
+  >
+    <ion-select-option *ngFor="let m of monedas" [value]="m.value">
+      {{ m.label }}
+    </ion-select-option>
+  </ion-select>
+  </ion-item>
 
-      <div class="grid-row">
-        <div class="grid-col-4">
-          <label>Valor</label>
-          <input type="number" formControlName="Valor" placeholder="0" />
-        </div>
-        <div class="grid-col-4">
-          <label>Cantidad</label>
-          <input type="number" formControlName="Cantidad" placeholder="0" />
-        </div>
-        <div class="grid-col-4">
-          <label>Total</label>
-          <input type="number" formControlName="Total" readonly="true" placeholder="0" />
-        </div>
-      </div>
+    <!-- Valor, Cantidad y Total en la misma fila -->
+<ion-grid>
+  <ion-row>
+    <ion-col size="4">
+      <ion-item>
+        <ion-label position="stacked">Valor</ion-label>
+        <ion-input type="number" formControlName="Valor"></ion-input>
+      </ion-item>
+    </ion-col>
 
-      <!-- empresa -->
-      <div class="form-row">
-        <label for="Empresa">Empresa:</label>
-        <select formControlName="Empresa">
-          <option *ngFor="let em of empresas" [value]="em.value">
-            {{ em.label}}
-          </option>
-        </select>
-      </div>
+    <ion-col size="3">
+      <ion-item>
+        <ion-label position="stacked">Cant</ion-label>
+        <ion-input type="number" formControlName="Cantidad"></ion-input>
+      </ion-item>
+    </ion-col>
 
-      <div class="grid-row">
-        <div class="grid-col-6">
-          <input type="text" formControlName="DocumentoRelacionado" placeholder="Documento Rdo" />
-        </div>
-        <div class="grid-col-6">
-          <input type="text" formControlName="Responsable" placeholder="Responsable ( Email )" />
-        </div>
-      </div>
+    <ion-col size="5">
+      <ion-item>
+        <ion-label position="stacked"   >Total</ion-label>
+        <ion-input type="number" formControlName="Total"  readonly="true" ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 
-      <!-- Comentario -->
-      <div class="form-row">
-        <textarea formControlName="Nota" placeholder="Nota" autoGrow="true" rows="3"></textarea>
-      </div>
 
-      <!-- Botón Guardar -->
-      <button type="submit" class="btn-tertiary btn-block" [disabled]="!form.valid">
-        Guardar Movimiento
-      </button>
+     <!-- Moneda (guarda directamente el texto en el form) -->
+    <ion-item>
+      <ion-select
+        formControlName="Empresa"
+        label="Empresa"
+        interface="popover"
+        placeholder="Seleccione"
+      >
+        <ion-select-option *ngFor="let em of empresas" [value]="em.value">
+          {{ em.label }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
 
-    </form>
+    <!-- NumeroCuenta y DocumentoRelacionado en la misma fila -->
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <!-- <ion-label position="stacked">Num cuenta</ion-label> -->
+            <ion-input formControlName="NumeroCuenta" placeholder="Num Cuenta" ></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item>
+            <!-- <ion-label position="stacked">Documento Rdo</ion-label> -->
+            <ion-input formControlName="DocumentoRelacionado" placeholder="Documento Rdo" ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+     <ion-item>
+      <!-- <ion-label position="stacked">Responsable</ion-label> -->
+      <ion-input formControlName="Responsable" placeholder="Responsable ( Email )" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+    <ion-textarea>
+      <!-- <ion-label position="stacked">Nota</ion-label> -->
+      <ion-input formControlName="Nota" placeholder="Nota" 
+        autoGrow="true"
+        rows="2"
+      ></ion-input>
+    </ion-textarea>
+    </ion-item>
+    
+    
+    <ion-button expand="block" type="submit" color="success" class="ion-margin-top">Guardar</ion-button>
+
+    
+  </form>
 
   </div>
+
 </ion-content>
+

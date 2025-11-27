@@ -1,3 +1,4 @@
+
 <!-- Toolbar -->
 <header class="toolbar toolbar-tertiary">
   <button class="back-btn" (click)="goBack()">
@@ -8,130 +9,154 @@
 </header>
 
 <!-- Contenido -->
-<div class="page-content">
-  <div class="operativaform-container">
-    <form [formGroup]="operativaForm" (ngSubmit)="guardarOperativa()">
+<div class="page-content" >
+  <div class="operativaform-container" >
+  <form [formGroup]="operativaForm" (ngSubmit)="guardarOperativa()">
+   
+    <!-- Num Cuenta -->
+    <div class="form-row">
+      <input
+        type="text"
+        formControlName="NumCuenta"
+        placeholder="Num Cuenta"
+      />
+    </div>
 
-      <!-- Num Cuenta -->
-      <div class="form-row">
-        <input type="text" formControlName="NumCuenta" placeholder="Num Cuenta" />
+    <!-- Ciclo + Resultado -->
+    <div class="grid-row">
+      <div class="grid-col-5">
+        <label for="ciclo">Ciclo:</label>
+        <input
+          type="text"
+          formControlName="Ciclo"
+          placeholder="Ciclo"
+        />
       </div>
 
-      <!-- Ciclo + Resultado -->
-      <div class="grid-row">
-        <div class="grid-col-5">
-          <label for="ciclo">Ciclo:</label>
-          <input type="text" formControlName="Ciclo" placeholder="Ciclo" />
-        </div>
+      <div class="grid-col-7">
+         <label for="resultado">Resultado:</label>
+        <select formControlName="Resultado">
+          <option *ngFor="let rs of resultados" [value]="rs.label">
+            {{ rs.label }}
+          </option>
+        </select>
+      </div>
+    </div>
 
-        <div class="grid-col-7">
-          <label for="resultado">Resultado:</label>
-          <select formControlName="Resultado">
-            <option *ngFor="let rs of resultados" [value]="rs.label">
-              {{ rs.label }}
-            </option>
-          </select>
-        </div>
+    <!-- Fila 1: Activo + Fase -->
+    <div class="grid-row">
+      <div class="grid-col-5">
+        <label for="activo">Activo:</label>
+        <select formControlName="Activo">
+          <option *ngFor="let ac of activos" [value]="ac.label">
+            {{ ac.label }}
+          </option>
+        </select>
       </div>
 
-      <!-- Fila 1: Activo + Fase -->
-      <div class="grid-row">
-        <div class="grid-col-5">
-          <label for="activo">Activo:</label>
-          <select formControlName="Activo">
-            <option *ngFor="let ac of activos" [value]="ac.label">
-              {{ ac.label }}
-            </option>
-          </select>
-        </div>
+      <div class="grid-col-7">
+         <label for="fase">Fase:</label>
+        <select formControlName="Fase">
+          <option *ngFor="let fs of fases" [value]="fs.label">
+            {{ fs.label }}
+          </option>
+        </select>
+      </div>
+    </div>
 
-        <div class="grid-col-7">
-          <label for="fase">Fase:</label>
-          <select formControlName="Fase">
-            <option *ngFor="let fs of fases" [value]="fs.label">
-              {{ fs.label }}
-            </option>
-          </select>
-        </div>
+    <!-- Fila 2: Setup + Riesgo -->
+    <div class="grid-row">
+      <div class="grid-col-5">
+         <label for="setup">Setup:</label>
+        <select formControlName="Setup">
+          <option *ngFor="let st of setups" [value]="st.label">
+            {{ st.label }}
+          </option>
+        </select>
       </div>
 
-      <!-- Fila 2: Setup + Riesgo -->
-      <div class="grid-row">
-        <div class="grid-col-5">
-          <label for="setup">Setup:</label>
-          <select formControlName="Setup">
-            <option *ngFor="let st of setups" [value]="st.label">
-              {{ st.label }}
-            </option>
-          </select>
-        </div>
+      <div class="grid-col-7">
+         <label for="riesgo">Riesgo:</label>
+        <select formControlName="Riesgo">
+          <option *ngFor="let rg of riesgos" [value]="rg.label">
+            {{ rg.label }}
+          </option>
+        </select>
+      </div>
+    </div>
 
-        <div class="grid-col-7">
-          <label for="riesgo">Riesgo:</label>
-          <select formControlName="Riesgo">
-            <option *ngFor="let rg of riesgos" [value]="rg.label">
-              {{ rg.label }}
-            </option>
-          </select>
-        </div>
+    <!-- Fila 3: Estrategia + Status -->
+    <div class="grid-row">
+      <div class="grid-col-5">
+        <label for="estrategia">Estrategia:</label>
+        <select formControlName="Estrategia">
+          <option *ngFor="let st of estrategias" [value]="st.label">
+            {{ st.label }}
+          </option>
+        </select>
       </div>
 
-      <!-- Fila 3: Estrategia + Status -->
-      <div class="grid-row">
-        <div class="grid-col-5">
-          <label for="estrategia">Estrategia:</label>
-          <select formControlName="Estrategia">
-            <option *ngFor="let st of estrategias" [value]="st.label">
-              {{ st.label }}
-            </option>
-          </select>
-        </div>
+      <div class="grid-col-7">
+         <label for="estatus">Estatus:</label>
+        <select formControlName="Estatus">
+          <option *ngFor="let sts of estatus" [value]="sts.label">
+            {{ sts.label }}
+          </option>
+        </select>
+      </div>
+    </div>
 
-        <div class="grid-col-7">
-          <label for="estatus">Estatus:</label>
-          <select formControlName="Estatus">
-            <option *ngFor="let sts of estatus" [value]="sts.label">
-              {{ sts.label }}
-            </option>
-          </select>
-        </div>
+    <!-- Valor y Balance -->
+    <div class="grid-row">
+      <div class="grid-col-5">
+        <label>Valor (USD)</label>
+        <input type="number" formControlName="Valor" placeholder="USD" />
       </div>
 
-      <!-- Valor y Balance -->
-      <div class="grid-row">
-        <div class="grid-col-5">
-          <label>Valor (USD)</label>
-          <input type="number" formControlName="Valor" placeholder="USD" />
-        </div>
-
-        <div class="grid-col-7">
-          <label>Balance:</label>
-          <input type="number" formControlName="BalanceActual" placeholder="USD" />
-        </div>
+      <div class="grid-col-7">
+        <label>Balance:</label>
+        <input type="number" formControlName="BalanceActual" placeholder="USD" />
       </div>
+    </div>
 
-      <!-- Trader -->
-      <div class="form-row">
-        <input type="text" formControlName="IdTrader" placeholder="Trader (Email)" />
-      </div>
+    <!-- Trader -->
+    <div class="form-row">
+      <input
+        type="text"
+        formControlName="IdTrader"
+        placeholder="Trader (Email)"
+      />
+    </div>
 
-      <!-- Comentario -->
-      <div class="form-row">
-        <textarea formControlName="Comentario" placeholder="Comentario" rows="3"></textarea>
-      </div>
+    <!-- Comentario -->
+    <div class="form-row">
+      <textarea
+        formControlName="Comentario"
+        placeholder="Comentario"
+        rows="3"
+      ></textarea>
+    </div>
 
-      <!-- Botón Guardar -->
-      <button type="submit" class="btn-tertiary btn-block" [disabled]="!operativaForm.valid">
-        Guardar Operativa
-      </button>
+    <!-- Botón Guardar -->
+    <button
+      type="submit"
+      class="btn-tertiary btn-block"
+      [disabled]="!operativaForm.valid"
+    >
+      Guardar Operativa
+    </button>
 
-      <!-- Fecha -->
-      <div class="form-row" style="visibility: hidden;">
-        <label>Fecha:</label>
-        <input type="date" formControlName="Fecha"
-          (change)="operativaForm.get('Fecha')?.setValue($event.target.value)" />
-      </div>
+    <!-- Fecha -->
+    <div class="form-row" style="visibility: hidden;">
+      <label>Fecha:</label>
+      <input
+        type="date"
+        formControlName="Fecha"
+        (change)="operativaForm.get('Fecha')?.setValue($event.target.value)"
+      />
+    </div>
 
-    </form>
+  </form>
   </div>
 </div>
+
