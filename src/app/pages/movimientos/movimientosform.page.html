@@ -24,10 +24,7 @@
 
     <form [formGroup]="form" (ngSubmit)="guardar()">
 
-      <!-- Num Cuenta -->
-      <div class="form-row">
-        <input type="text" formControlName="NumeroCuenta" placeholder="Num Cuenta" />
-      </div>
+    
 
       <div class="grid-row">
         <div class="grid-col-6">
@@ -35,20 +32,22 @@
           <input type="date" formControlName="FechaMovimiento"
             (change)="form.get('FechaMovimiento')?.setValue($event.target.value)" />
         </div>
+
         <div class="grid-col-6">
           <label for="IdTipo">Tipo Movimiento:</label>
-          <select formControlName="IdTipo">
+          <select formControlName="IdTipo" (change)="onTipoChange($event)" >
             <option *ngFor="let tipo of tipos" [value]="tipo.id">
               {{ tipo.label}}
             </option>
           </select>
         </div>
+
       </div>
 
       <div class="grid-row">
         <div class="grid-col-6">
           <label for="IdConcepto">Concepto:</label>
-          <select formControlName="IdConcepto">
+          <select formControlName="IdConcepto" (change)="onConceptoChange($event)">
             <option *ngFor="let c of conceptos" [value]="c.id">
               {{ c.label}}
             </option>
@@ -56,7 +55,7 @@
         </div>
         <div class="grid-col-6">
           <label for="Moneda">Moneda:</label>
-          <select formControlName="Moneda">
+          <select formControlName="Moneda"  (change)="onMonedaChange($event)">
             <option *ngFor="let m of monedas" [value]="m.value">
               {{ m.label}}
             </option>
@@ -89,6 +88,12 @@
         </select>
       </div>
 
+        <!-- Num Cuenta -->
+      <div class="form-row">
+        <input type="text" formControlName="NumeroCuenta" placeholder="Num Cuenta" />
+      </div>
+
+
       <div class="grid-row">
         <div class="grid-col-6">
           <input type="text" formControlName="DocumentoRelacionado" placeholder="Documento Rdo" />
@@ -98,6 +103,9 @@
         </div>
       </div>
 
+      <div class="form-row">
+        <input type="text" formControlName="Factura" placeholder="Factura" />
+      </div>
       <!-- Comentario -->
       <div class="form-row">
         <textarea formControlName="Nota" placeholder="Nota" autoGrow="true" rows="3"></textarea>

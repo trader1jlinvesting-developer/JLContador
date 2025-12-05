@@ -86,7 +86,7 @@ export class MovimientosFormPage implements OnInit {
     private alertCtrl: AlertController,
     private route: ActivatedRoute,
     private nav: NavController,
-     private location: Location
+    private location: Location
   ) {
 
     this.form = this.fb.group({
@@ -107,6 +107,7 @@ export class MovimientosFormPage implements OnInit {
       Empresa: [''],
       FechaRegistro: [null],
       IdCliente: ['1'],
+      Factura: [''],
     });
 
   }
@@ -194,25 +195,38 @@ export class MovimientosFormPage implements OnInit {
 
 
   onTipoChange(event: any) {
-    const id = event.detail.value;
+    const id = Number(event.target.value);
     const tipoSeleccionado = this.tipos.find(t => t.id === id);
-    console.log("El nombre del tipo 1:", tipoSeleccionado);
-    this.form.patchValue({ Tipo: tipoSeleccionado?.label });
+
+    console.log("onTipoChange", tipoSeleccionado);
+
+    this.form.patchValue({
+      Tipo: tipoSeleccionado?.label ?? ''
+    });
   }
 
 
   // Cuando cambia el concepto, mapea el id al texto y lo guarda en "Concepto"
-  onConceptoChange(ev: any) {
-    const id = Number(ev?.detail?.value);
+  onConceptoChange(event: any) {
+    const id = Number(event.target.value);
     const found = this.conceptos.find(c => c.id === id);
-    this.form.patchValue({ Concepto: found?.label ?? '' });
+
+    console.log("onConceptoChange:", found);
+
+    this.form.patchValue({
+      Concepto: found?.label ?? ''
+    });
   }
 
   onMonedaChange(event: any) {
-    const text = event.detail.value; // Aquí ya es "USD" o "COP"
-    const label = event.target.textContent.trim();
-    this.form.patchValue({ Moneda: text });
-  }
+    const value = event.target.value;           // Ej: "USD" o "COP"
+    const label = event.target.options[event.target.selectedIndex].text; // Texto visible
 
+    console.log("onMonedaChange:", label);
+
+    this.form.patchValue({
+      Moneda: value
+    });
+  }
 
 }

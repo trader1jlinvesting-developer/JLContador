@@ -244,7 +244,7 @@ export class MovimientosService {
       )
     );
   }
-
+ 
   // 🔹 Ahora agrega Número único con prefijo + consecutivo
   async agregarMovimiento(m: Movimiento) {
 
