@@ -210,5 +210,4 @@ onMonedaChange(event: any) {
   this.form.patchValue({ Moneda: text });
 }
 
-
 }
