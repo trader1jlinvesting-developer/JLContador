@@ -56,7 +56,10 @@ export class MovimientosFormPage implements OnInit {
     { id: 18, label: 'Reset Live Sim' },
     { id: 19, label: 'Salario' },
     { id: 20, label: 'Dividendo Mensual' },
-    { id: 21, label: 'Dividendo Anual' }
+    { id: 21, label: 'Dividendo Anual' },
+    { id: 22, label: 'Viáticos' },
+    { id: 23, label: 'Fiesta fin de año' },
+    { id: 24, label: 'Cobro adicional por retiro' }
 
   ];
 
