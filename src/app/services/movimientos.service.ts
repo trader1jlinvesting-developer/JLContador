@@ -247,7 +247,7 @@ export class MovimientosService {
  
   // 🔹 Ahora agrega Número único con prefijo + consecutivo
   async agregarMovimiento(m: Movimiento) {
-
+console.log('entro a guardar 2')
     if (!m.Tipo) {
       console.error('El movimiento no tiene Tipo definido');
       return;
@@ -260,7 +260,8 @@ export class MovimientosService {
       Numero: numero,
       FechaMovimiento: this.parsearFecha(m.FechaMovimiento) // 🔹 guardamos como Date
     };
-
+console.log('entro a guardar 3', this.coll)
+console.log('entro a guardar 4', mov)
     return addDoc(this.coll, mov);
   }
 

@@ -179,12 +179,14 @@ export class MovimientosFormPage implements OnInit {
         await msa.present();
 
       } else {
+        console.log('entro a guardar 1', data)
         await this.svc.agregarMovimiento(data);
-
+        
         const msa = await this.alertCtrl.create({ header: 'Guardado', message: 'Se guardo correctamente el movimiento', buttons: ['OK'] });
         await msa.present();
 
       }
+      console.log('salio de guardar ' )
       this.nav.back();
     } catch (err) {
 
