@@ -70,6 +70,7 @@ export class ReportesPage {
   }
 
   aplicarFiltros() {
+    console.log("this.filtroAnio", this.filtroAnio)
     this.barChartMethod(this.filtroMes, this.filtroAnio);
     this.lineChartMethod(this.filtroAnio);   // este solo usa año completo
     this.lineChartDiaMethod(this.filtroMes, this.filtroAnio);
@@ -103,6 +104,7 @@ export class ReportesPage {
   }
 
   barChartMethod(mes: number, anio: number) {
+    console.log("barChartMethod", anio)
     this.svc.charBarMovimientos(mes, anio).subscribe((data) => {
       if (this.barChart) {
         this.barChart.destroy();
@@ -151,11 +153,12 @@ export class ReportesPage {
           },
           plugins: [ChartDataLabels]
         });
-         setTimeout(() => this.lineChart.resize(), 50);
+        setTimeout(() => this.lineChart.resize(), 50);
       }, 10);
     });
   }
   lineChartDiaMethod(mes: number, anio: number) {
+    console.log("lineChartDiaMethod", anio)
     this.svc.charLineMovimientosMesActual(mes, anio).subscribe((agrupado) => {
       if (this.lineChartDia) {
         this.lineChartDia.destroy();
@@ -195,11 +198,12 @@ export class ReportesPage {
             scales: { y: { beginAtZero: true } }
           }
         });
-         setTimeout(() => this.lineChart.resize(), 50);
+        setTimeout(() => this.lineChart.resize(), 50);
       }, 10);
     });
   }
   lineChartMethod(anio: number) {
+    console.log("lineChartMethod", anio)
     this.svc.charLineMovimientos(anio).subscribe(({ meses, datasets }) => {
       if (this.lineChart) {
         this.lineChart.destroy();
@@ -238,7 +242,7 @@ export class ReportesPage {
           },
           plugins: [ChartDataLabels]
         });
-         setTimeout(() => this.lineChart.resize(), 50);
+        setTimeout(() => this.lineChart.resize(), 50);
       }, 10);
     });
   }

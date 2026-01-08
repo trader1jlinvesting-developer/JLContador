@@ -113,19 +113,21 @@
     </ion-row>
   </ion-grid> -->
 
-<h6>Bienvenidos</h6>
+  <h6>Bienvenidos</h6>
 
   <div class="ion-padding">
 
-    
+
 
     <div class="row justify-content-center">
       <div class="col-sm-6 col-md-5">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">¿ Quién Somos ?</h5>
-            <p class="card-text">Fondo de inversión creado en el 2024 donde nos especializamos en la compra y venta de activos financieros y donde hemos gestionado hasta el momento fondos al rededor de 500 K desde nuestra fundación.</p>
-            
+            <p class="card-text">Fondo de inversión creado en el 2024 donde nos especializamos en la compra y venta de
+              activos financieros y donde hemos gestionado hasta el momento fondos al rededor de 500 K desde nuestra
+              fundación.</p>
+
           </div>
         </div>
       </div>
@@ -134,7 +136,8 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Nuestros Pilares</h5>
-            <p class="card-text">Nos centramos principlalmente en tres pilares fundamentales: <br> * La Estrategia. <br> * La Gestión de riesgo. <br> * La Disciplina.</p>
+            <p class="card-text">Nos centramos principlalmente en tres pilares fundamentales: <br> * La Estrategia. <br>
+              * La Gestión de riesgo. <br> * La Disciplina.</p>
 
           </div>
         </div>
@@ -145,58 +148,58 @@
       <div class="col-sm-3 col-md-2">
         <div class="card">
           <div class="card-body">
-                 
-                  <img src="../../../assets/img/JLInvesting2.jpg"  />
-                
-            
+
+            <img src="../../../assets/img/JLInvesting2.jpg" />
+
+
           </div>
         </div>
       </div>
-      
+
       <div class="col-sm-9 col-md-8">
         <div class="card">
           <div class="card-body">
-            
-
- <div class="filtros-container" style="padding: 16px;">
-      <div class="row">
 
 
-        <!-- Filtro Año -->
-        <div class="col-6">
-          <label for="anioSelect">Año</label>
-          <select id="anioSelect" [(ngModel)]="filtroAnio" (change)="aplicarFiltros()" class="form-select">
-            <option *ngFor="let a of aniosLista" [value]="a">
-              {{ a }}
-            </option>
-          </select>
-        </div>
-      </div>
-    </div>
+            <div class="filtros-container" style="padding: 16px;">
+              <div class="row">
 
-    <ion-card>
-      <ion-card-header>
-        NUESTROS HISTORIA
-      </ion-card-header>
-      <ion-card-content>
-        <canvas #lineCanvas style="position: relative; height:30vh; width:40vw"></canvas>
-      </ion-card-content>
 
-      <ion-grid>
-        <ion-row>
-          <ion-col *ngFor="let item of totalesTipos">
-            <ion-card [style.backgroundColor]="coloresTipos[item.tipo]">
+                <!-- Filtro Año -->
+                <div class="col-6">
+                  <label for="anioSelect">Año</label>
+                  <select [(ngModel)]="filtroAnio" (change)="aplicarFiltros()" class="form-select">
+                    <option *ngFor="let a of aniosLista" [ngValue]="a">
+                      {{ a }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <ion-card>
               <ion-card-header>
-                <ion-card-title>$ {{ item.valor | number:'1.0-0' }}</ion-card-title>
-                <ion-card-subtitle>{{ item.tipo }} Mes</ion-card-subtitle>
+                NUESTROS HISTORIA
               </ion-card-header>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+              <ion-card-content>
+                <canvas #lineCanvas style="position: relative; height:30vh; width:40vw"></canvas>
+              </ion-card-content>
 
-    </ion-card>
-    
+              <ion-grid>
+                <ion-row>
+                  <ion-col *ngFor="let item of totalesTipos">
+                    <ion-card [style.backgroundColor]="coloresTipos[item.tipo]">
+                      <ion-card-header>
+                        <ion-card-title>$ {{ item.valor | number:'1.0-0' }}</ion-card-title>
+                        <ion-card-subtitle>{{ item.tipo }} Mes</ion-card-subtitle>
+                      </ion-card-header>
+                    </ion-card>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+
+            </ion-card>
+
 
 
           </div>
@@ -204,7 +207,7 @@
       </div>
     </div>
 
-   
+
 
 
 
