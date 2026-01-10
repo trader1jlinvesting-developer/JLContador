@@ -77,6 +77,16 @@ setups = [
   { id: 23, label: 'A-R(AR3)' } ,
   { id: 24, label: 'A-R4(AR4)' },
   { id: 25, label: 'A-R(AR+)' },
+  { id: 26, label: 'Error1' },
+  { id: 27, label: 'Error2' },
+  { id: 28, label: 'Error3' },
+  { id: 29, label: 'Error4' },
+  { id: 30, label: 'Error5' },
+  { id: 31, label: 'Error6' },
+  { id: 32, label: 'Error7' },
+  { id: 33, label: 'Error8' },
+  { id: 34, label: 'Error9' },
+  { id: 35, label: 'FalsoRompimiento' }
   
 ];
 
