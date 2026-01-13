@@ -117,8 +117,12 @@ export class ReportesPage {
       this.coloresTipos = {};
       const datasets = labels.map((tipo, i) => {
         let color;
-        if (tipo.toLowerCase().includes('ingreso')) color = 'rgba(0, 128, 0, 0.6)';
-        else if (tipo.toLowerCase().includes('gasto')) color = 'rgba(255, 0, 0, 0.6)';
+        //if (tipo.toLowerCase().includes('ingreso')) color = 'rgba(0, 128, 0, 0.6)';
+        if (tipo.trim().toLowerCase() === 'ingreso') {color = 'rgba(0, 128, 0, 0.6)';}
+        else if (tipo.trim().toLowerCase() === 'gasto') {color = 'rgba(255, 0, 0, 0.6)';}       
+        else if (tipo.trim().toLowerCase() === 'caja') {color = '#F5F327';} 
+
+        //else if (tipo.toLowerCase().includes('gasto')) color = 'rgba(255, 0, 0, 0.6)';
         else color = `rgba(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},0,0.6)`;
 
         this.coloresTipos[tipo] = color;
@@ -172,8 +176,13 @@ export class ReportesPage {
 
       const datasets = Array.from(tipos).map(tipo => {
         let color;
-        if (tipo.toLowerCase().includes('ingreso')) color = 'rgba(0, 128, 0, 1)';
-        else if (tipo.toLowerCase().includes('gasto')) color = 'rgba(255, 0, 0, 1)';
+        // if (tipo.toLowerCase().includes('ingreso')) color = 'rgba(0, 128, 0, 1)';
+        // else if (tipo.toLowerCase().includes('gasto')) color = 'rgba(255, 0, 0, 1)';
+    
+
+        if (tipo.trim().toLowerCase() === 'ingreso') {color = 'rgba(0, 128, 0, 0.6)';}
+        else if (tipo.trim().toLowerCase() === 'gasto') {color = 'rgba(255, 0, 0, 0.6)';}   
+        else if (tipo.trim().toLowerCase() === 'caja') {color = '#F5F327';}     
         else color = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 1)`;
 
         return {
@@ -214,8 +223,13 @@ export class ReportesPage {
         let color;
         const tipo = ds.label.toLowerCase();
 
-        if (tipo.includes('ingreso')) color = 'rgba(0, 128, 0, 1)';
-        else if (tipo.includes('gasto')) color = 'rgba(255, 0, 0, 1)';
+        // if (tipo.includes('ingreso')) color = 'rgba(0, 128, 0, 1)';
+        // else if (tipo.includes('gasto')) color = 'rgba(255, 0, 0, 1)';
+
+        if (tipo.trim().toLowerCase() === 'ingreso') {color = 'rgba(0, 128, 0, 0.6)';}
+        else if (tipo.trim().toLowerCase() === 'gasto') {color = 'rgba(255, 0, 0, 0.6)';}   
+        else if (tipo.trim().toLowerCase() === 'caja') {color = '#F5F327';} 
+
         else color = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 1)`;
 
         return { ...ds, borderColor: color, backgroundColor: color, fill: false, tension: 0.1 };

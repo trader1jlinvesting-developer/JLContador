@@ -31,7 +31,10 @@ export class MovimientosFormPage implements OnInit {
     { id: 4, label: 'CXP' },
     { id: 5, label: 'Ajuste' },
     { id: 6, label: 'Anulación' },
-    { id: 7, label: 'Pago Dividendo' }
+    { id: 7, label: 'Pago Dividendo' },
+    { id: 8, label: 'Meta Ingreso' },
+    { id: 9, label: 'Meta Gasto' },
+    { id: 10, label: 'Caja' }
 
   ];
 
@@ -59,7 +62,9 @@ export class MovimientosFormPage implements OnInit {
     { id: 21, label: 'Dividendo Anual' },
     { id: 22, label: 'Viáticos' },
     { id: 23, label: 'Fiesta fin de año' },
-    { id: 24, label: 'Cobro adicional por retiro' }
+    { id: 24, label: 'Cobro adicional por retiro' },
+    { id: 25, label: 'Proyección' },
+    { id: 26, label: 'Caja' }
 
   ];
 
@@ -77,7 +82,8 @@ export class MovimientosFormPage implements OnInit {
     { value: 'APX', label: 'Apex' },
     { value: 'WBI', label: 'Walbi' },
     { value: 'COL', label: 'Colaborador' },
-    { value: 'INV', label: 'Inversionista' }
+    { value: 'INV', label: 'Inversionista' },
+    { value: 'JLI', label: 'JLInvesting' }
 
   ];
 
