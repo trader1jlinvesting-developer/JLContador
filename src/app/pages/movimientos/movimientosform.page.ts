@@ -34,7 +34,9 @@ export class MovimientosFormPage implements OnInit {
     { id: 7, label: 'Pago Dividendo' },
     { id: 8, label: 'Meta Ingreso' },
     { id: 9, label: 'Meta Gasto' },
-    { id: 10, label: 'Caja' }
+    { id: 10, label: 'Caja' },
+    { id: 11, label: 'Utilidad' },
+    { id: 12, label: 'Meta Utilidad' }
 
   ];
 
@@ -64,7 +66,8 @@ export class MovimientosFormPage implements OnInit {
     { id: 23, label: 'Fiesta fin de año' },
     { id: 24, label: 'Cobro adicional por retiro' },
     { id: 25, label: 'Proyección' },
-    { id: 26, label: 'Caja' }
+    { id: 26, label: 'Caja' },
+    { id: 27, label: 'Utilidad' }
 
   ];
 
