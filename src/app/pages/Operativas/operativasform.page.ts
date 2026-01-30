@@ -86,7 +86,8 @@ setups = [
   { id: 32, label: 'Error7' },
   { id: 33, label: 'Error8' },
   { id: 34, label: 'Error9' },
-  { id: 35, label: 'FalsoRompimiento' }
+  { id: 35, label: 'FalsoRompimiento' },
+  { id: 36, label: 'Error Compas Parcial' }
   
 ];
 
